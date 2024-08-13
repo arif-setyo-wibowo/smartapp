@@ -151,33 +151,40 @@
 
 <!-- / Content -->
 <script>
-    document.getElementById('confirm-text').addEventListener('click', function(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Apakah Yakin ingin menghapus data?',
-            text: "Data yang dihapus akan hilang!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal',
-            customClass: {
-            confirmButton: 'btn btn-primary me-3 waves-effect waves-light',
-            cancelButton: 'btn btn-outline-secondary waves-effect'
-            },
-            buttonsStyling: false
-        }).then(function (result) {
-            if (result.value) {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('#example1').addEventListener('click', function(event) {
+        // Check if the clicked element has the ID 'confirm-text'
+            if (event.target && event.target.id === 'confirm-text') {
+                event.preventDefault();
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil Hapus!',
-                    text: 'Data telah dihapus.',
+                    title: 'Apakah Yakin ingin menghapus data?',
+                    text: "Data yang dihapus akan hilang!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal',
                     customClass: {
-                    confirmButton: 'btn btn-success waves-effect'
+                        confirmButton: 'btn btn-primary me-3 waves-effect waves-light',
+                        cancelButton: 'btn btn-outline-secondary waves-effect'
+                    },
+                    buttonsStyling: false
+                }).then(function (result) {
+                    if (result.value) {
+                        // Handle the form submission or deletion here
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil Hapus!',
+                            text: 'Data telah dihapus.',
+                            customClass: {
+                                confirmButton: 'btn btn-success waves-effect'
+                            }
+                        });
                     }
                 });
             }
         });
     });
+
 </script>
 
 <?php include 'footer.php'; ?>

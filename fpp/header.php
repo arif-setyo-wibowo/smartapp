@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="../assets/vendor/libs/toastr/toastr.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/sweetalert2/sweetalert2.css" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <!-- Page CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css" />
     <link rel="stylesheet" href="../assets/vendor/css/pages/app-logistics-dashboard.css" />
@@ -82,13 +83,6 @@
                         <span class="menu-header-text">Form Action</span>
                     </li>
                     
-
-                    <li class="menu-item <?php echo ($current_page == 'calon-vendor.php') ? 'active' : ''; ?>">
-                        <a href="calon-vendor.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-shape"></i>
-                            <div>Calon Vendor</div>
-                        </a>
-                    </li>
                     <li class="menu-item <?php echo ($current_page == 'kinerja-vendor.php') ? 'active' : ''; ?>">
                         <a href="kinerja-vendor.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>

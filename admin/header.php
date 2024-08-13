@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="../assets/vendor/libs/toastr/toastr.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/sweetalert2/sweetalert2.css" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <!-- Page CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css" />
     <link rel="stylesheet" href="../assets/vendor/css/pages/app-logistics-dashboard.css" />
@@ -93,6 +94,12 @@
                         <a href="project.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>
                             <div>Data Project</div>
+                        </a>
+                    </li>
+                    <li class="menu-item <?php echo ($current_page == 'calon-vendor.php') ? 'active' : ''; ?>">
+                        <a href="calon-vendor.php" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-account-supervisor-circle"></i>
+                            <div>Data Calon Vendor</div>
                         </a>
                     </li>
                     <li class="menu-item <?php echo ($current_page == 'penilaian.php') ? 'active' : ''; ?>">

@@ -1,20 +1,14 @@
 <!doctype html>
 
 <html
-    lang="en"
-    class="light-style layout-navbar-fixed layout-wide"
-    dir="ltr"
-    data-theme="theme-default"
-    data-assets-path="assets
-    /"
+    lang="en" class="light-style layout-navbar-fixed layout-wide" dir="ltr"
+    data-theme="theme-default" data-assets-path="assets/"
     data-template="front-pages">
 <head>
     <meta charset="utf-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Landing Page - Prorgam Atlet</title>
+    <title>Landing Page - SMART PPA</title>
 
     <meta name="description" content="" />
 
@@ -289,27 +283,20 @@
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-<script src="assets
-/vendor/libs/popper/popper.js"></script>
-<script src="assets
-/vendor/js/bootstrap.js"></script>
-<script src="assets
-/vendor/libs/node-waves/node-waves.js"></script>
+<script src="assets/vendor/libs/popper/popper.js"></script>
+<script src="assets/vendor/js/bootstrap.js"></script>
+<script src="assets/vendor/libs/node-waves/node-waves.js"></script>
 
 <!-- endbuild -->
 
 <!-- Vendors JS -->
-<script src="assets
-/vendor/libs/nouislider/nouislider.js"></script>
-<script src="assets
-/vendor/libs/swiper/swiper.js"></script>
+<script src="assets/vendor/libs/nouislider/nouislider.js"></script>
+<script src="assets/vendor/libs/swiper/swiper.js"></script>
 
 <!-- Main JS -->
-<script src="assets
-/js/front-main.js"></script>
+<script src="assets/js/front-main.js"></script>
 
 <!-- Page JS -->
-<script src="assets
-/js/front-page-landing.js"></script>
+<script src="assets/js/front-page-landing.js"></script>
 </body>
 </html>

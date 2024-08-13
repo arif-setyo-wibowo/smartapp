@@ -66,8 +66,9 @@
     <script src="../assets/vendor/libs/quill/quill.js"></script>
     <link rel="stylesheet" href="../assets/vendor/libs/toastr/toastr.js" />
 
+    
     <script src="../assets/js/forms-editors.js"></script>
-
+    
     <script src="../assets/js/tables-datatables-basic.js"></script>
     <script>
         $(document).ready(function() {

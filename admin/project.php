@@ -80,14 +80,34 @@
                             <th>No</th>
                             <th>Project</th>
                             <th>Kategori Project</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Penilaian Calon Vendor</td>
-                            <td>Q</td>
+                            <td>Jasa  Tera  Ulang  dan  Kalibrasi  Peralatan  Produksi  dan  Tangki  Timbun</td>
+                            <td>Jasa Lainnya</td>
+                            <td><button class="btn btn-success">Terlaksana</button></td>
+                            <td>
+                                <a href="form-ranking-calon-vendor-detail.php" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-pencil-alt"></i>
+                                    Detail
+                                </a>
+                                <form action="" method="POST" id="delete-form" style="display: inline;">
+            
+                                    <button type="button" class="btn btn-danger btn-sm" id="confirm-text">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jasa  B</td>
+                            <td>Jasa Lainnya</td>
+                            <td><button class="btn btn-warning">Menunggu Seleksi</button></td>
                             <td>
                                 <a href="project_edit.php" class="btn btn-info btn-sm">
                                     <i class="fas fa-pencil-alt"></i>
@@ -101,7 +121,6 @@
                                 </form>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -125,33 +144,40 @@
 
 <!-- / Content -->
 <script>
-    document.getElementById('confirm-text').addEventListener('click', function(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Apakah Yakin ingin menghapus data?',
-            text: "Data yang dihapus akan hilang!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal',
-            customClass: {
-            confirmButton: 'btn btn-primary me-3 waves-effect waves-light',
-            cancelButton: 'btn btn-outline-secondary waves-effect'
-            },
-            buttonsStyling: false
-        }).then(function (result) {
-            if (result.value) {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('#example1').addEventListener('click', function(event) {
+        // Check if the clicked element has the ID 'confirm-text'
+            if (event.target && event.target.id === 'confirm-text') {
+                event.preventDefault();
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil Hapus!',
-                    text: 'Data telah dihapus.',
+                    title: 'Apakah Yakin ingin menghapus data?',
+                    text: "Data yang dihapus akan hilang!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal',
                     customClass: {
-                    confirmButton: 'btn btn-success waves-effect'
+                        confirmButton: 'btn btn-primary me-3 waves-effect waves-light',
+                        cancelButton: 'btn btn-outline-secondary waves-effect'
+                    },
+                    buttonsStyling: false
+                }).then(function (result) {
+                    if (result.value) {
+                        // Handle the form submission or deletion here
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil Hapus!',
+                            text: 'Data telah dihapus.',
+                            customClass: {
+                                confirmButton: 'btn btn-success waves-effect'
+                            }
+                        });
                     }
                 });
             }
         });
     });
+
 </script>
 
 <?php include 'footer.php'; ?>
