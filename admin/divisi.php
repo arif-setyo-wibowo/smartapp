@@ -87,7 +87,7 @@
                             <td>1</td>
                             <td>Marketing</td>
                             <td>
-                                <a href="kategori_edit.php?id=1" class="btn btn-info btn-sm">
+                                <a href="divisi_edit.php?id=1" class="btn btn-info btn-sm">
                                     <i class="fas fa-pencil-alt"></i>
                                     Edit
                                 </a>
