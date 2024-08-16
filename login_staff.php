@@ -1,16 +1,11 @@
 <!doctype html>
 
-<html
-    lang="en"
-    class="light-style layout-wide customizer-hide"
-    dir="ltr"
-    data-theme="theme-default"
-    data-assets-path="assets/"
-    data-template="horizontal-menu-template">
+<html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
+    data-assets-path="assets/" data-template="horizontal-menu-template">
+
 <head>
     <meta charset="utf-8" />
-    <meta
-        name="viewport"
+    <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>Login</title>
@@ -23,8 +18,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
         rel="stylesheet" />
 
     <!-- Icons -->
@@ -59,98 +53,91 @@
 </head>
 
 <body>
-<!-- Content -->
+    <!-- Content -->
 
-<div class="position-relative">
-    <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner py-4">
-            <!-- Login -->
-            <div class="card p-2">
-                <div class="card-body mt-2">
-                    <h4 class="mb-2">Selamat Datang! 👋</h4>
-                    <p class="mb-4">Login dengan user anda untuk masuk ke sistem</p>
-                    <?php
+    <div class="position-relative">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner py-4">
+                <!-- Login -->
+                <div class="card p-2">
+                    <div class="card-body mt-2">
+                        <h4 class="mb-2">Selamat Datang! 👋</h4>
+                        <p class="mb-4">Login dengan user anda untuk masuk ke sistem</p>
+                        <?php
                     session_start(); // Start the session at the beginning of your script
 
                     // Display success message if it exists
                     if (isset($_SESSION['msg'])): ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert" id="autoDismissAlert" style="margin:5px;">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert"
+                            id="autoDismissAlert" style="margin:5px;">
                             <?php echo $_SESSION['msg']; ?>
                         </div>
                         <?php unset($_SESSION['msg']); // Clear the message after displaying it
                     endif; ?>
 
-                    <?php
+                        <?php
                     // Display error message if it exists
                     if (isset($_SESSION['error'])): ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert" style="margin:5px;">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
+                            style="margin:5px;">
                             <?php echo $_SESSION['error']; ?>
                         </div>
                         <?php unset($_SESSION['error']); // Clear the error after displaying it
                     endif; ?>
 
-                    <?php
+                        <?php
                     // Display validation errors if they exist
                     if (!empty($_SESSION['errors'])): ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert" style="margin:5px;">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
+                            style="margin:5px;">
                             <?php foreach ($_SESSION['errors'] as $error): ?>
-                                <?php echo $error; ?><br>
+                            <?php echo $error; ?><br>
                             <?php endforeach; ?>
                         </div>
                         <?php unset($_SESSION['errors']); // Clear the errors after displaying them
                     endif; ?>
 
 
-                    <form id="formAuthentication" class="mb-3" action="" method="post">
-                        <div class="form-floating form-floating-outline mb-3">
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="email"
-                                name="email"
-                                placeholder="Masukkan email"
-                                autofocus />
-                            <label for="email">Email</label>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-password-toggle">
-                                <div class="input-group input-group-merge">
-                                    <div class="form-floating form-floating-outline">
-                                        <input
-                                            type="password"
-                                            id="password"
-                                            class="form-control"
-                                            name="password"
-                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                            aria-describedby="password" />
-                                        <label for="password">Password</label>
+                        <form id="formAuthentication" class="mb-3" action="" method="post">
+                            <div class="form-floating form-floating-outline mb-3">
+                                <input type="text" class="form-control" id="email" name="email"
+                                    placeholder="Masukkan email" autofocus />
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-password-toggle">
+                                    <div class="input-group input-group-merge">
+                                        <div class="form-floating form-floating-outline">
+                                            <input type="password" id="password" class="form-control" name="password"
+                                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                aria-describedby="password" />
+                                            <label for="password">Password</label>
+                                        </div>
+                                        <span class="input-group-text cursor-pointer"><i
+                                                class="mdi mdi-eye-off-outline"></i></span>
                                     </div>
-                                    <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
                                 </div>
                             </div>
-                        </div>
-                        <!-- <div class="mb-3 text-end">
+                            <!-- <div class="mb-3 text-end">
                             <a href="{{ url('forgot') }}">
                                 <span>Lupa Password?</span>
                             </a>
                         </div>  -->
-                        <div class="mb-3">
-                            <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
-                        </div>
-                    </form>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
+                <!-- /Login -->
+                <img alt="mask" src="assets/img/illustrations/auth-basic-login-mask-light.png"
+                    class="authentication-image d-none d-lg-block"
+                    data-app-light-img="illustrations/auth-basic-login-mask-light.png"
+                    data-app-dark-img="illustrations/auth-basic-login-mask-dark.png" />
             </div>
-            <!-- /Login -->
-            <img
-            alt="mask"
-            src="assets/img/illustrations/auth-basic-login-mask-light.png"
-            class="authentication-image d-none d-lg-block"
-            data-app-light-img="illustrations/auth-basic-login-mask-light.png"
-            data-app-dark-img="illustrations/auth-basic-login-mask-dark.png" />
         </div>
     </div>
-</div>
 
     <!-- / Content -->
 
@@ -181,4 +168,3 @@
 </body>
 
 </html>
-
