@@ -169,9 +169,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('click', function(event) {
-            // Cek jika elemen yang diklik adalah tombol konfirmasi hapus
             if (event.target && event.target.classList.contains('confirm-text')) {
-                event.preventDefault(); // Mencegah aksi default
+                event.preventDefault();
 
                 const formId = event.target.getAttribute('data-form-id');
                 const form = document.getElementById(`delete-form-${formId}`);
@@ -190,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     buttonsStyling: false
                 }).then(function(result) {
                     if (result.isConfirmed) {
-                        form.submit(); // Kirimkan formulir setelah konfirmasi
+                        form.submit();
                     }
                 });
             }
