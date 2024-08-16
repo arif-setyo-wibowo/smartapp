@@ -20,15 +20,11 @@
             <div class="tab-pane fade active show" id="navs-top-profile" role="tabpanel">
                 <form action="" method="POST">
                 <div class="form-floating form-floating-outline mb-4">
-                    <select class="selectpicker w-100" data-style="btn-default" name="idcabor" data-live-search="true" required>
-                        <option selected disabled value="">Pilih Vendor</option>
-                            <option value="A">Vendor A</option>
-                            <option value="B">Vendor B</option>
-                    </select>
+                    <input type="text" class="form-control" id="vendor-name" name="nama_vendor" placeholder="Nama Vendor" readonly/>
                     <label for="vendor-name">Nama Vendor</label>
                 </div>
                 <div class="form-floating form-floating-outline mb-4">
-                    <input type="text" class="form-control" id="job-title" name="judul_pekerjaan" value="otomatis mengikuti vendor yang dipilih" readonly required/>
+                    <input type="text" class="form-control" id="job-title" name="judul_pekerjaan" value="otomatis mengikuti vendor yang dipilih" readonly />
                     <label for="job-title">Judul Pekerjaan</label>
                 </div>
                 <div class="form-floating form-floating-outline mb-4">
@@ -175,7 +171,7 @@
                         </table>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Ubah</button>
+                    <button type="submit" class="btn btn-primary mt-3">Update Nilai</button>
                     <a href="penilaian-vendor.php"><button type="button" class="btn btn-danger mt-3">Batal</button></a>
                 </form>
             </div>

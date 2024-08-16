@@ -84,13 +84,6 @@
                         <span class="menu-header-text">Ranking</span>
                     </li>
                     
-
-                    <li class="menu-item <?php echo ($current_page == 'form-ranking.php') ? 'active' : ''; ?>">
-                        <a href="form-ranking.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-numeric"></i>
-                            <div>Form Ranking</div>
-                        </a>
-                    </li>
                     <li class="menu-header fw-medium mt-4">
                         <span class="menu-header-text">Form Action</span>
                     </li>
@@ -100,7 +93,13 @@
                     <li class="menu-item <?php echo ($current_page == 'penilaian-vendor.php') ? 'active' : ''; ?>">
                         <a href="penilaian-vendor.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>
-                            <div>Penilaian Vendor</div>
+                            <div>Penilaian Kinerja Vendor</div>
+                        </a>
+                    </li>
+                    <li class="menu-item <?php echo ($current_page == 'penilaian-calon-vendor.php') ? 'active' : ''; ?>">
+                        <a href="penilaian-calon-vendor.php" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>
+                            <div>Penilaian Calon Vendor</div>
                         </a>
                     </li>
                     <li class="menu-item">

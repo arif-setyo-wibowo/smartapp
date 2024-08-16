@@ -32,6 +32,7 @@
                   </tr>
                 </tbody>
               </table>
+              <a href="index.php" style="display:inline;float:right;margin:12px;" class="btn btn-danger">Kembali</a>
             </div>
           </div>
         </div>

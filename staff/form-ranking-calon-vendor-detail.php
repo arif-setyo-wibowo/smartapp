@@ -9,6 +9,7 @@
             <h5 class="card-header">Ranking Penilaian Calon Vendor Judul Project</h5>
             <div class="table-responsive ">
               <table  id="example1" class="table table-bordered table-striped">
+               
                 <thead>
                   <tr>
                     <th>No</th>
@@ -265,7 +266,9 @@
                   </tr>
                 </tbody>
               </table>
+              
             </div>
+             <a href="form-ranking.php" style="display:inline;float:right;margin:12px;" class="btn btn-danger">Kembali</a>
           </div>
         </div>
     </div>

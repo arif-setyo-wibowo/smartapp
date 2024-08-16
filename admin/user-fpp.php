@@ -80,7 +80,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Username</th>
-                            <th>Project Pengadaan</th>
+                            <th>Divisi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -89,7 +89,7 @@
                             <td>1</td>
                             <td>Joni</td>
                             <td>Username</td>
-                            <td>Test 123</td>
+                            <td>lab</td>
                             <td>
                                 <a href="user-fpp_edit.php" class="btn btn-info btn-sm">
                                     <i class="fas fa-pencil-alt"></i>
@@ -119,8 +119,11 @@
                         <label for="basic-default-fullname">Nama</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Project" required/>
-                        <label for="basic-default-fullname">Project Pengadaan</label>
+                        <label>Divisi</label>
+                        <select class="selectpicker w-100" data-style="btn-default" name="kategori" data-live-search="true" required>
+                            <option selected disabled value="">Pilih Divisi</option>
+                                <option value="A">Divisi A</option>
+                        </select>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
                         <input type="text" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Username" required/>

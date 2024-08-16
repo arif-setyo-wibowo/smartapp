@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">SMART PPA /</span> Project</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">SMART PPA /</span> Divisi</h4>
 
     <div class="card mb-4">
         <div class="card-header p-0">
@@ -56,11 +56,11 @@
             <?php endif; ?>
 
 
-            <div class="nav-align-top">
+          <div class="nav-align-top">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button type="button" class="nav-link waves-effect active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="false" tabindex="-1">
-                     Project
+                     Divisi
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -78,78 +78,42 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Project</th>
-                            <th>Kategori Project</th>
-                            <th>Status</th>
+                            <th>Nama Divisi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Jasa  Tera  Ulang  dan  Kalibrasi  Peralatan  Produksi  dan  Tangki  Timbun</td>
-                            <td>Jasa Lainnya</td>
-                            <td><button class="btn btn-success">Terlaksana</button></td>
+                            <td>Marketing</td>
                             <td>
-                                <a href="form-ranking-calon-vendor-detail.php" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-pencil-alt"></i>
-                                    Detail
-                                </a>
-                                <form action="" method="POST" id="delete-form" style="display: inline;">
-            
-                                    <button type="button" class="btn btn-danger btn-sm" id="confirm-text">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jasa  B</td>
-                            <td>Jasa Lainnya</td>
-                            <td><button class="btn btn-warning">Menunggu Seleksi</button></td>
-                            <td>
-                                <a href="project_edit.php" class="btn btn-info btn-sm">
+                                <a href="kategori_edit.php?id=1" class="btn btn-info btn-sm">
                                     <i class="fas fa-pencil-alt"></i>
                                     Edit
                                 </a>
                                 <form action="" method="POST" id="delete-form" style="display: inline;">
-            
                                     <button type="button" class="btn btn-danger btn-sm" id="confirm-text">
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
                                 </form>
                             </td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade " id="navs-top-profile" role="tabpanel">
-                <form action="{{ route('kategori.store')}}" method="POST" >
+            <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
+                <form action="" method="POST">
                     <div class="form-floating form-floating-outline mb-4">
-                        <label>Kategori</label>
-                        <select class="selectpicker w-100" data-style="btn-default" name="kategori" data-live-search="true" required>
-                            <option selected disabled value="">Pilih Kategori</option>
-                                <option value="A">Kategori A</option>
-                        </select>
-                    </div>
-                    <div class="form-floating form-floating-outline mb-4">
-                        <label>Divisi</label>
-                        <select class="selectpicker w-100" data-style="btn-default" name="kategori" data-live-search="true" required>
-                            <option selected disabled value="">Pilih Divisi</option>
-                                <option value="A">Divisi A</option>
-                        </select>
-                    </div>
-                    <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Project" required/>
-                        <label for="basic-default-fullname">Nama project</label>
+                        <input type="text" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Kategori" required/>
+                        <label for="basic-default-fullname">Divisi</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah</button>
                 </form>
             </div>
           </div>
         </div>
-      </div>
+    </div>
 </div>
 
 <!-- / Content -->

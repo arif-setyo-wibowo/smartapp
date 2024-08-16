@@ -7,23 +7,32 @@
             <h5 class="card-header">Filter</h5>
             <div class="card-body">
             <div class="row">
-                <div class="col-md-4 col-sm-12 pe-0 mb-md-0 mb-2">
-                <label>Kategori</label>
-                <select class="selectpicker w-100" data-style="btn-default" name="idcabor" data-live-search="true" required>
-                    <option selected disabled value="">Pilih Kategori</option>
-                        <option value="P">P</option>
-                        <option value="Q">Q</option>
-                </select>
+                <div class="col col-md-3 col-sm-6 pe-0 mb-md-0 mb-2">
+                    <label>Kategori</label>
+                    <select class="selectpicker w-100" data-style="btn-default" name="idcabor" data-live-search="true" required>
+                        <option selected disabled value="">Pilih Kategori</option>
+                            <option value="P">P</option>
+                            <option value="Q">Q</option>
+                    </select>
                 </div>
-                <div class="col-md-4 col-sm-12 pe-0 mb-md-0 mb-2">
-                <label>Project</label>
-                <select class="selectpicker w-100" data-style="btn-default" name="idcabor" data-live-search="true" required>
-                    <option selected disabled value="">Pilih Project</option>
-                        <option value="A">Project A</option>
-                        <option value="B">Project B</option>
-                </select>
+                <div class="col col-md-3 col-sm-6 pe-0 mb-md-0 mb-2">
+                    <label>Project</label>
+                    <select class="selectpicker w-100" data-style="btn-default" name="idcabor" data-live-search="true" required>
+                        <option selected disabled value="">Pilih Project</option>
+                            <option value="A">Project A</option>
+                            <option value="B">Project B</option>
+                    </select>
                 </div>
-                <div class="col-md-4 col-sm-12">
+                <div class="col col-md-3 col-sm-6 pe-0 mb-md-0 mb-2">
+                    <label>Project</label>
+                    <select class="selectpicker w-100" data-style="btn-default" name="idcabor" data-live-search="true" required>
+                        <option selected disabled value="">Pilih Jenis Penilaian </option>
+                            <option value="A">Penilaian Kinerja Vendor FPP</option>
+                            <option value="A">Penilaian Kinerja Vendor Staff</option>
+                            <option value="A">Penilaian Calon Vendor Staff</option>
+                    </select>
+                </div>
+                <div class="col col-md-3 col-sm-6">
                 <label>&nbsp;</label>
                 <button class="clipboard-btn btn btn-primary me-2 waves-effect waves-light w-100" data-clipboard-action="copy" data-clipboard-target="#clipboard-example">
                     Cari
@@ -35,57 +44,6 @@
     </div>
     <div class="card mb-4">
         <div class="card-header p-0">
-          <!-- Success Alert -->
-          <?php if (isset($_SESSION['msg'])): ?>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: '<?php echo $_SESSION['msg']; ?>',
-                        icon: 'success',
-                        customClass: {
-                            confirmButton: 'btn btn-primary waves-effect waves-light'
-                        },
-                        buttonsStyling: false
-                    });
-                });
-            </script>
-            <?php unset($_SESSION['msg']); endif; ?>
-
-            <!-- Error Alert -->
-            <?php if (isset($_SESSION['error'])): ?>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: '<?php echo $_SESSION['error']; ?>',
-                        icon: 'error',
-                        customClass: {
-                            confirmButton: 'btn btn-primary waves-effect waves-light'
-                        },
-                        buttonsStyling: false
-                    });
-                });
-            </script>
-            <?php unset($_SESSION['error']); endif; ?>
-
-            <!-- Validation Errors Alert -->
-            <?php if (!empty($errors)): ?>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    Swal.fire({
-                        title: 'Error!',
-                        html: '<?php echo implode("<br>", $errors); ?>',
-                        icon: 'error',
-                        customClass: {
-                            confirmButton: 'btn btn-primary waves-effect waves-light'
-                        },
-                        buttonsStyling: false
-                    });
-                });
-            </script>
-            <?php endif; ?>
-
 
             <div class="nav-align-top">
             <ul class="nav nav-tabs" role="tablist">
@@ -94,15 +52,10 @@
                      Penilaian
                     </button>
                   </li>
-                  <li class="nav-item" role="presentation">
-                    <button type="button" class="nav-link waves-effect" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-profile" aria-controls="navs-top-profile" aria-selected="true">
-                      Tambah Data
-                    </button>
-                  </li>
             <span class="tab-slider" style="left: 91.1528px; width: 107.111px; bottom: 0px;"></span></ul>
           </div>
         </div>
-        <!-- <div class="card-body">
+        <div class="card-body">
           <div class="tab-content p-0">
             <div class="tab-pane fade active show" id="navs-top-home" role="tabpanel">
                 <table id="example1" class="table table-striped table-bordered">
@@ -112,7 +65,7 @@
                             <th>Judul Pengadaan</th>
                             <th>Project</th>
                             <th>Kategori Project</th>
-                            <th>Action</th>
+                            <th>Total Nilai</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,43 +74,13 @@
                             <td>Pengadaan ...</td>
                             <td>Penilaian Calon Vendor</td>
                             <td>Q</td>
-                            <td>
-                                <a href="penilaian_edit.php" class="btn btn-info btn-sm">
-                                    <i class="fas fa-pencil-alt"></i>
-                                    Edit
-                                </a>
-                                <form action="" method="POST" id="delete-form" style="display: inline;">
-                                    
-                                    <button type="button" class="btn btn-danger btn-sm" id="confirm-text">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                </form>
-                            </td>
+                            <td>90</td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade " id="navs-top-profile" role="tabpanel">
-                <form action="{{ route('penilaian.store')}}" method="POST" >
-                    
-                    <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Pengadaan" required/>
-                        <label for="basic-default-fullname">Judul Pengadaan</label>
-                    </div>
-                    <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Kategori" required/>
-                        <label for="basic-default-fullname">Kategori</label>
-                    </div>
-                    <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Project" required/>
-                        <label for="basic-default-fullname">Nama project</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                </form>
-            </div>
           </div>
-        </div> -->
+        </div>
     </div>
 </div>
 

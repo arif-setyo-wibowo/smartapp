@@ -87,25 +87,31 @@
                     <li class="menu-item <?php echo ($current_page == 'kategori.php') ? 'active' : ''; ?>">
                         <a href="kategori.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-shape"></i>
-                            <div>Data Kategori</div>
+                            <div>Kategori</div>
+                        </a>
+                    </li>
+                    <li class="menu-item <?php echo ($current_page == 'divisi.php') ? 'active' : ''; ?>">
+                        <a href="divisi.php" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-shield-outline"></i>
+                            <div>Divisi</div>
                         </a>
                     </li>
                     <li class="menu-item <?php echo ($current_page == 'project.php') ? 'active' : ''; ?>">
                         <a href="project.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>
-                            <div>Data Project</div>
+                            <div>Project</div>
                         </a>
                     </li>
                     <li class="menu-item <?php echo ($current_page == 'calon-vendor.php') ? 'active' : ''; ?>">
                         <a href="calon-vendor.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-account-supervisor-circle"></i>
-                            <div>Data Calon Vendor</div>
+                            <div>Calon Vendor</div>
                         </a>
                     </li>
                     <li class="menu-item <?php echo ($current_page == 'penilaian.php') ? 'active' : ''; ?>">
                         <a href="penilaian.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-calendar-edit"></i>
-                            <div>Data Penilaian</div>
+                            <div>Penilaian</div>
                         </a>
                     </li>
                     <li class="menu-item <?php echo ($current_page == 'procurement.php') ? 'active' : ''; ?>">

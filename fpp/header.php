@@ -77,6 +77,7 @@
                         <a href="index.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
                             <div>Dashboards</div>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info text-white">1</span>
                         </a>
                     </li>
                     <li class="menu-header fw-medium mt-4">
