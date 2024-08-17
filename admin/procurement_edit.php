@@ -1,3 +1,43 @@
+<?php
+session_start();
+$title = 'Edit Procurement';
+
+include '../koneksi.php';
+if (isset($_GET['id'])) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $id_procurement = intval($_POST['id_procurement']);
+        $nama = $koneksi->real_escape_string($_POST['nama']);
+        $email = $koneksi->real_escape_string($_POST['email']);
+        $no_id = intval($_POST['no_id']);
+        $sql = "UPDATE procurement SET nama='$nama', email='$email', no_id='$no_id' WHERE id_procurement=$id_procurement";
+
+        if ($koneksi->query($sql) === true) {
+            $_SESSION['msg'] = 'Procurement berhasil diperbarui!';
+        } else {
+            $_SESSION['error'] = 'Procurement gagal diperbarui!';
+        }
+
+        header('Location: procurement.php');
+        exit();
+    } else {
+        $id_procurement = intval($_GET['id']);
+        $sql = "SELECT * FROM procurement WHERE id_procurement = $id_procurement";
+        $result = mysqli_query($koneksi, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $procurement = mysqli_fetch_assoc($result);
+        } else {
+            $_SESSION['error'] = 'Procurement tidak ditemukan!';
+            header('Location: procurement.php');
+            exit();
+        }
+    }
+} else {
+    header('Location: procurement.php');
+    exit();
+}
+
+?>
 <?php include 'header.php'; ?>
 <div class="container-xxl flex-grow-1 container-p-y">
 <h4 class="py-3 mb-4"><span class="text-muted fw-light">SMART PPA /</span> Procurement</h4>
@@ -17,19 +57,20 @@
         <div class="card-body">
           <div class="tab-content p-0">
             <div class="tab-pane fade active show" id="navs-top-profile" role="tabpanel">
-                <form action="{{ route('project.update','1')}}" method="POST" >
+                <form action="" method="POST" >
                 <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Nama" required/>
+                        <input type="text" class="form-control" id="basic-default-fullname" name="nama" placeholder="Nama" value="<?= $procurement['nama'] ?>" required/>
                         <label for="basic-default-fullname">Nama</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="email" class="form-control" id="basic-default-fullname" name="nama_kategori" placeholder="Email" required/>
+                        <input type="email" class="form-control" id="basic-default-fullname" name="email" placeholder="Email" value="<?= $procurement['email'] ?>" required/>
                         <label for="basic-default-fullname">Email</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" inputmode="numeric" class="form-control" id="basic-default-fullname" name="No. ID" placeholder="Project" required oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
+                        <input type="text" inputmode="numeric" class="form-control" id="basic-default-fullname" name="no_id" placeholder="Project" value="<?= $procurement['no_id'] ?>" required oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
                         <label for="basic-default-fullname">No. ID</label>
                     </div>
+                    <input type="hidden" name="id_procurement" value="<?= $procurement['id_procurement'] ?>" hidden>
                     <button type="submit" class="btn btn-primary">Ubah</button>
                     <a href="procurement.php"><button type="button" class="btn btn-danger">Batal</button></a>
                 </form>
