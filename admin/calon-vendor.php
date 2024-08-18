@@ -6,7 +6,6 @@ include '../koneksi.php';
 $no = 1;
 $data = mysqli_query($koneksi, 'SELECT c.*, p.nama_project, k.nama_kategori FROM calonvendor c JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori');
 $dataProject = mysqli_query($koneksi, 'SELECT * FROM project WHERE status="0"');
-$_SESSION['id_procurement'] = 1;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'];
@@ -26,14 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->close();
     } elseif ($action == 'insert') {
         $nama_vendor = $koneksi->real_escape_string($_POST['nama_vendor']);
-        $id_procurement = intval($_SESSION['id_procurement']);
         $id_project = intval($_POST['id_project']);
         $tahapan_proses = $koneksi->real_escape_string($_POST['tahapan_proses']);
         $tanggal = $_POST['tanggal'];
         $oe = intval($_POST['oe']);
         $penawaran = intval($_POST['penawaran']);
         $eficiency = $_POST['efisiensi'];
-        $sql = "INSERT INTO calonvendor (id_procurement, id_project, nama_vendor, tahapan_proses, tanggal, oe, penawaran, eficiency) VALUES ('$id_procurement', '$id_project', '$nama_vendor', '$tahapan_proses','$tanggal','$oe','$penawaran','$eficiency')";
+        $sql = "INSERT INTO calonvendor (id_project, nama_vendor, tahapan_proses, tanggal, oe, penawaran, eficiency) VALUES ('$id_project', '$nama_vendor', '$tahapan_proses','$tanggal','$oe','$penawaran','$eficiency')";
         if ($koneksi->query($sql) === true) {
             $_SESSION['msg'] = 'Calon Vendor berhasil ditambahkan!';
         } else {
