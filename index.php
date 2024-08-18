@@ -136,7 +136,7 @@
                         <div class="col col-md-6"><a href="login_fpp.php" class="btn btn-primary w-100 mt-3">Login
                                 FPP</a></div>
                         <div class="col col-md-12"><a href="login_staff.php" class="btn btn-primary w-50 mt-3">Login
-                                USER</a></div>
+                                STAFF</a></div>
 
                     </div>
 

@@ -1,12 +1,22 @@
+<?php
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    session_unset(); 
+    session_destroy(); 
+    
+    header("Location: ../login_staff.php"); 
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title></title>
+    <title>Your Page Title</title>
 
-    <meta name="description" content="" />
+    <meta name="description" content="Your description" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
@@ -14,23 +24,19 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Icons -->
     <link rel="stylesheet" href="../assets/vendor/fonts/materialdesignicons.css" />
     <link rel="stylesheet" href="../assets/vendor/fonts/flag-icons.css" />
-
-    <!-- Menu waves for no-customizer fix -->
-    <link rel="stylesheet" href="../assets/vendor/libs/node-waves/node-waves.css" />
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="../assets/css/demo.css" />
 
-    <!-- Vendors CSS -->
+    <!-- Vendor CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../assets/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/quill/editor.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
@@ -43,13 +49,12 @@
     <link rel="stylesheet" href="../assets/vendor/libs/toastr/toastr.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/sweetalert2/sweetalert2.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-
     <!-- Page CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css" />
     <link rel="stylesheet" href="../assets/vendor/css/pages/app-logistics-dashboard.css" />
 
-    <!-- Helpers -->
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="../assets/vendor/js/helpers.js"></script>
     <script src="../assets/vendor/js/template-customizer.js"></script>
     <script src="../assets/js/config.js"></script>
@@ -62,7 +67,7 @@
             <!-- Menu -->
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="" class="app-brand-link">
+                    <a href="#" class="app-brand-link">
                         <span class="app-brand-text demo menu-text fw-bold ms-2">SMART PPA</span>
                     </a>
                 </div>
@@ -80,37 +85,39 @@
                             <div>Dashboards</div>
                         </a>
                     </li>
+
                     <li class="menu-header fw-medium mt-4">
                         <span class="menu-header-text">Ranking</span>
                     </li>
-                    
+
                     <li class="menu-header fw-medium mt-4">
                         <span class="menu-header-text">Form Action</span>
                     </li>
-                    
 
-                   
                     <li class="menu-item <?php echo ($current_page == 'penilaian-vendor.php') ? 'active' : ''; ?>">
                         <a href="penilaian-vendor.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>
                             <div>Penilaian Kinerja Vendor</div>
                         </a>
                     </li>
+
                     <li class="menu-item <?php echo ($current_page == 'penilaian-calon-vendor.php') ? 'active' : ''; ?>">
                         <a href="penilaian-calon-vendor.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>
                             <div>Penilaian Calon Vendor</div>
                         </a>
                     </li>
+
+                    <!-- Logout Link -->
                     <li class="menu-item">
-                        <a href="logout.php" class="menu-link">
+                        <a href="?action=logout" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-logout"></i>
                             <div>Logout</div>
                         </a>
                     </li>
                 </ul>
             </aside>
-            <!-- / Menu -->
+            <!-- /Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
@@ -141,8 +148,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">Rudi</span>
-                                                    <small class="text-muted">Admin</small>
+                                                <span class="fw-medium d-block"><?php echo htmlspecialchars($_SESSION['nama']); ?></span>
+                                                <small class="text-muted"><?php echo htmlspecialchars($_SESSION['user']); ?></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -151,7 +158,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="/logout">
+                                        <a class="dropdown-item" href="?action=logout">
                                             <i class="mdi mdi-logout me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
@@ -162,9 +169,8 @@
                         </ul>
                     </div>
                 </nav>
-                <!-- / Navbar -->
+                <!-- /Navbar -->
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    <!-- Add your content here -->

@@ -54,7 +54,7 @@
 
 <body>
     <!-- Content -->
-
+    
     <div class="position-relative">
         <div class="authentication-wrapper authentication-basic container-p-y">
             <div class="authentication-inner py-4">
@@ -131,10 +131,10 @@
                     </div>
                 </div>
                 <!-- /Login -->
-                <img alt="mask" src="assets/img/illustrations/auth-basic-login-mask-light.png"
+                <img alt="mask" src="assets/img/illustrations/auth-basic-register-mask-light.png"
                     class="authentication-image d-none d-lg-block"
-                    data-app-light-img="illustrations/auth-basic-login-mask-light.png"
-                    data-app-dark-img="illustrations/auth-basic-login-mask-dark.png" />
+                    data-app-light-img="illustrations/auth-basic-register-mask-light.png"
+                    data-app-dark-img="illustrations/auth-basic-register-mask-dark.png" />
             </div>
         </div>
     </div>

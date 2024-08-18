@@ -168,7 +168,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="form-floating form-floating-outline mb-4">
                             <input type="text" class="form-control" id="efficiency" name="efisiensi"
-                                value="<?= $calonvendor['eficiency'] ?>" readonly required />
+                                value="<?= $calonvendor['eficiency'] ?>%" readonly required />
                             <label for="efficiency">Efisiensi</label>
                         </div>
 

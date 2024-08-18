@@ -1,3 +1,15 @@
+
+<?php
+session_start();
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['user']) && !isset($_SESSION['staff'])) {
+    header('Location: ../login_staff.php'); 
+    exit();
+}
+?>
+
+
 <?php include 'header.php'; ?>
 <div class="container-xxl flex-grow-1 container-p-y">
   <h4 class="py-3 mb-4"><span class="text-muted fw-light">SMART PPA /</span> Ubah Penilaian Vendor</h4>

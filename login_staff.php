@@ -1,3 +1,51 @@
+<?php
+session_start();
+include 'koneksi.php';
+// Proses login jika metode request adalah POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $errors = [];
+
+    // Validasi input
+    if (empty($email)) {
+        $errors[] = 'Email tidak boleh kosong.';
+    }
+    if (empty($password)) {
+        $errors[] = 'Password tidak boleh kosong.';
+    }
+
+    if (empty($errors)) {
+        // Prepare SQL query to check the email and password
+        $stmt = $koneksi->prepare('SELECT * FROM procurement WHERE email = ? AND no_id = ?');
+        $stmt->bind_param('ss', $email, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            // Login berhasil
+            $user = $result->fetch_assoc(); 
+            $_SESSION['staff'] = true; 
+            $_SESSION['user'] = $email;
+            $_SESSION['nama'] = $user['nama'];  
+            $_SESSION['msg'] = 'Login berhasil!';
+            header('Location: staff/index.php'); // Redirect ke halaman setelah login
+            exit();
+        } else {
+            $_SESSION['error'] = 'Email atau password salah.';
+        }
+
+        $stmt->close();
+    } else {
+        $_SESSION['errors'] = $errors;
+    }
+
+    header('Location: login_staff.php');
+    exit();
+}
+?>
+
 <!doctype html>
 
 <html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
@@ -8,7 +56,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login</title>
+    <title>Login Staff</title>
 
     <meta name="description" content="" />
 
@@ -36,6 +84,7 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="assets/vendor/libs/sweetalert2/sweetalert2.css" />
     <!-- Vendor -->
     <link rel="stylesheet" href="assets/vendor/libs/@form-validation/form-validation.css" />
 
@@ -53,55 +102,51 @@
 </head>
 
 <body>
-    <!-- Content -->
 
     <div class="position-relative">
-        <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-wrapper authentication-basic container-p-y">
             <div class="authentication-inner py-4">
                 <!-- Login -->
                 <div class="card p-2">
                     <div class="card-body mt-2">
                         <h4 class="mb-2">Selamat Datang! 👋</h4>
                         <p class="mb-4">Login dengan user anda untuk masuk ke sistem</p>
-                        <?php
-                    session_start(); // Start the session at the beginning of your script
-
-                    // Display success message if it exists
-                    if (isset($_SESSION['msg'])): ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert"
-                            id="autoDismissAlert" style="margin:5px;">
-                            <?php echo $_SESSION['msg']; ?>
-                        </div>
-                        <?php unset($_SESSION['msg']); // Clear the message after displaying it
-                    endif; ?>
 
                         <?php
-                    // Display error message if it exists
-                    if (isset($_SESSION['error'])): ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
-                            style="margin:5px;">
-                            <?php echo $_SESSION['error']; ?>
-                        </div>
-                        <?php unset($_SESSION['error']); // Clear the error after displaying it
-                    endif; ?>
+                        // Display success message if it exists
+                        if (isset($_SESSION['msg'])): ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                id="autoDismissAlert" style="margin:5px;">
+                                <?php echo $_SESSION['msg']; ?>
+                            </div>
+                            <?php unset($_SESSION['msg']); // Clear the message after displaying it
+                        endif; ?>
 
                         <?php
-                    // Display validation errors if they exist
-                    if (!empty($_SESSION['errors'])): ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
-                            style="margin:5px;">
-                            <?php foreach ($_SESSION['errors'] as $error): ?>
-                            <?php echo $error; ?><br>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php unset($_SESSION['errors']); // Clear the errors after displaying them
-                    endif; ?>
+                        // Display error message if it exists
+                        if (isset($_SESSION['error'])): ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
+                                style="margin:5px;">
+                                <?php echo $_SESSION['error']; ?>
+                            </div>
+                            <?php unset($_SESSION['error']); // Clear the error after displaying it
+                        endif; ?>
 
+                        <?php
+                        // Display validation errors if they exist
+                        if (!empty($_SESSION['errors'])): ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
+                                style="margin:5px;">
+                                <?php foreach ($_SESSION['errors'] as $error): ?>
+                                <?php echo $error; ?><br>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php unset($_SESSION['errors']); // Clear the errors after displaying them
+                        endif; ?>
 
-                        <form id="formAuthentication" class="mb-3" action="" method="post">
+                        <form class="mb-3" action="" method="post">
                             <div class="form-floating form-floating-outline mb-3">
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Masukkan email" autofocus />
+                                <input type="email" class="form-control" name="email" placeholder="Masukkan Email" required />
                                 <label for="email">Email</label>
                             </div>
                             <div class="mb-3">
@@ -110,7 +155,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <input type="password" id="password" class="form-control" name="password"
                                                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                                aria-describedby="password" />
+                                                aria-describedby="password" required />
                                             <label for="password">Password</label>
                                         </div>
                                         <span class="input-group-text cursor-pointer"><i
@@ -118,23 +163,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="mb-3 text-end">
-                            <a href="{{ url('forgot') }}">
-                                <span>Lupa Password?</span>
-                            </a>
-                        </div>  -->
                             <div class="mb-3">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
                 <!-- /Login -->
-                <img alt="mask" src="assets/img/illustrations/auth-basic-login-mask-light.png"
+                <img alt="mask" src="assets/img/illustrations/auth-basic-reset-password-mask-light.png"
                     class="authentication-image d-none d-lg-block"
-                    data-app-light-img="illustrations/auth-basic-login-mask-light.png"
-                    data-app-dark-img="illustrations/auth-basic-login-mask-dark.png" />
+                    data-app-light-img="illustrations/auth-basic-reset-password-mask-light.png"
+                    data-app-dark-img="illustrations/auth-basic-reset-password-mask-dark.png" />
             </div>
         </div>
     </div>
@@ -160,6 +199,7 @@
     <script src="assets/vendor/libs/@form-validation/bootstrap5.js"></script>
     <script src="assets/vendor/libs/@form-validation/auto-focus.js"></script>
 
+    <script src="assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
 
