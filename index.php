@@ -58,7 +58,7 @@
         <div class="navbar navbar-expand-lg landing-navbar border-top-0 px-3 px-md-4">
             <!-- Menu logo wrapper: Start -->
             <div class="navbar-brand app-brand demo d-flex py-0 py-lg-2 me-4">
-                <a href="landing-page.html" class="app-brand-link">
+                <a href="index.php" class="app-brand-link">
                     <span class="app-brand-logo demo">
                         <img src="assets/img/logo.jpg" style="width:95px;">
                     </span>

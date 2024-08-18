@@ -91,10 +91,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                     </li>
 
                     <li class="menu-header fw-medium mt-4">
-                        <span class="menu-header-text">Ranking</span>
-                    </li>
-
-                    <li class="menu-header fw-medium mt-4">
                         <span class="menu-header-text">Form Action</span>
                     </li>
 
