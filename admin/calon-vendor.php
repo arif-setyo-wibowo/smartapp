@@ -151,27 +151,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><?= $d['nama_project'] ?></td>
                                 <td><?= date('d/m/Y', strtotime($d['tanggal'])) ?></td>
                                 <td><?= $d['eficiency'] ?>%</td>
-                                <td><button class="btn btn-danger">Belum dinilai staff</button></td>
+                                <?php if ($d['status_point'] == 0) :?>
+                                <td><button class="btn btn-danger btn-sm">Belum dinilai staff</button></td>
+                                <?php elseif ($d['status_point'] == 1) :?>
+                                <td><button class="btn btn-success btn-sm">Sudah dinilai staff</button></td>
+                                <?php endif;?>
+
                                 <?php if ($d['status_calon_vendor'] == 0) :?>
-                                <td><button class="btn btn-warning">Menunggu Seleksi</button></td>
+                                <td><button class="btn btn-warning btn-sm">Menunggu Seleksi</button></td>
                                 <?php elseif ($d['status_calon_vendor'] == 1) :?>
-                                <td><button class="btn btn-danger">Penawar gagal</button></td>
+                                <td><button class="btn btn-danger btn-sm">Penawar gagal</button></td>
                                 <?php elseif ($d['status_calon_vendor'] == 2) :?>
-                                <td><button class="btn btn-success">Pelaksana Project</button></td>
+                                <td><button class="btn btn-success btn-sm">Pelaksana Project</button></td>
                                 <?php endif;?>
                                 <td>
                                     <?php if ($d['status_calon_vendor'] == 0) :?>
-                                    <a href="calon-vendor-edit.php?id=<?= $d['id_calonvendor'] ?>" class="btn btn-info btn-sm mt-1">
+                                    <a href="calon-vendor-edit.php?id=<?= $d['id_calonvendor'] ?>"
+                                        class="btn btn-info btn-sm mt-1">
                                         <i class="fas fa-pencil-alt"></i>
                                         Edit
                                     </a>
                                     <?php endif;?>
-                                    <a href="calon-vendor-detail.php?id=<?= $d['id_calonvendor'] ?>" class="btn btn-warning btn-sm mt-1">
+                                    <a href="calon-vendor-detail.php?id=<?= $d['id_calonvendor'] ?>"
+                                        class="btn btn-warning btn-sm mt-1">
                                         <i class="fas fa-pencil-alt"></i>
                                         Detail
                                     </a>
-                                    <form action="calon-vendor.php" method="POST" id="delete-form-<?= $d['id_calonvendor'] ?>"
-                                        style="display: inline;">
+                                    <form action="calon-vendor.php" method="POST"
+                                        id="delete-form-<?= $d['id_calonvendor'] ?>" style="display: inline;">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id_calonvendor" value="<?= $d['id_calonvendor'] ?>">
                                         <button type="button" class="btn btn-danger btn-sm confirm-text"
@@ -237,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </div>
 <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
         const oeInput = document.getElementById('oe');
         const offerInput = document.getElementById('offer');
         const efficiencyInput = document.getElementById('efficiency');
@@ -248,7 +255,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if (!isNaN(oe) && !isNaN(offer) && oe !== 0) {
                 let efficiency = ((oe - offer) / oe) * 100;
-                efficiencyInput.value = efficiency.toFixed(2) + "%";
+                efficiency = Math.max(efficiency, 0);
+                efficiencyInput.value = efficiency.toFixed(2);
             } else {
                 efficiencyInput.value = '0';
             }
@@ -257,7 +265,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         oeInput.addEventListener('input', calculateEfficiency);
         offerInput.addEventListener('input', calculateEfficiency);
     });
-
 </script>
 
 <script>
