@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Edit
                                     </a>
                                     <?php elseif ($d['status'] == 1) :?>
-                                    <a href="form-ranking-calon-vendor-detail.php" class="btn btn-warning btn-sm">
+                                    <a href="form-ranking-calon-vendor-detail.php?id=<?= $d['id_project'] ?>" class="btn btn-warning btn-sm">
                                         <i class="fas fa-pencil-alt"></i>
                                         Detail
                                     </a>

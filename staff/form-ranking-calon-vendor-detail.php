@@ -86,34 +86,49 @@ if (!isset($_SESSION['staff'])) {
 }
 
 include '../koneksi.php';
-if (isset($_GET['id'])) {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        
-    } else {
-        $id_project = intval($_GET['id']);
-        $sql = "SELECT * FROM project WHERE id_project = $id_project";
-        $result = mysqli_query($koneksi, $sql);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-            $project = mysqli_fetch_assoc($result);
-            $title = 'Ranking Penilaian Calon Vendor ' . $project['nama_project'];
-            $no = 1;
-            $dataCalonVendor = mysqli_query($koneksi, "SELECT c.*, p.nama_project, k.nama_kategori FROM calonvendor c JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori WHERE c.id_project = $id_project");
-            $rows = [];
-            while ($d = mysqli_fetch_array($dataCalonVendor)) {
-                $total = calculatePercentage30($d['total_point']) + calculatePercentage50($d['eficiency']) + calculateValue20($d['kontrak']);
-                $d['total'] = $total;
-                $rows[] = $d;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_calonvendor = intval($_POST['id_calonvendor']);
+    $kontrak = intval($_POST['contract_duration']);
+    $dataCalonVendor = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM calonvendor WHERE id_calonvendor = $id_calonvendor"));
+    $update1 = $koneksi->query("UPDATE calonvendor SET status_calon_vendor='2', kontrak='$kontrak' WHERE id_calonvendor=$id_calonvendor");
+    if ($update1 === true) {
+        $id_project = $dataCalonVendor['id_project'];
+        $update2 = $koneksi->query("UPDATE project SET status='1' WHERE id_project=$id_project");
+        if ($update2 === true) {
+            $cari1 = mysqli_query($koneksi, "SELECT * FROM calonvendor WHERE id_project = $id_project AND id_calonvendor NOT IN ($id_calonvendor)");
+            while ($row = mysqli_fetch_assoc($cari1)) {
+                $idup = $row['id_calonvendor'];
+                $koneksi->query("UPDATE calonvendor SET status_calon_vendor='1' WHERE id_calonvendor=$idup");
             }
-
-            usort($rows, function ($a, $b) {
-                return $b['total'] - $a['total'];
-            });
-        } else {
-            $_SESSION['error'] = 'Project tidak ditemukan!';
-            header('Location: index.php');
-            exit();
+            $_SESSION['msg'] = 'Pemenang berhasil ditentukan!';
         }
+    }
+    header('Location: form-ranking-calon-vendor-detail.php?id=' . $id_project);
+    exit();
+} elseif (isset($_GET['id'])) {
+    $id_project = intval($_GET['id']);
+    $sql = "SELECT * FROM project WHERE id_project = $id_project";
+    $result = mysqli_query($koneksi, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $project = mysqli_fetch_assoc($result);
+        $title = 'Ranking Penilaian Calon Vendor ' . $project['nama_project'];
+        $no = 1;
+        $dataCalonVendor = mysqli_query($koneksi, "SELECT c.*, p.nama_project, k.nama_kategori FROM calonvendor c JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori WHERE c.id_project = $id_project");
+        $rows = [];
+        while ($d = mysqli_fetch_array($dataCalonVendor)) {
+            $total = calculatePercentage30($d['total_point']) + calculatePercentage50($d['eficiency']) + calculateValue20($d['kontrak']);
+            $d['total'] = $total;
+            $rows[] = $d;
+        }
+
+        usort($rows, function ($a, $b) {
+            return $b['total'] - $a['total'];
+        });
+    } else {
+        $_SESSION['error'] = 'Project tidak ditemukan!';
+        header('Location: index.php');
+        exit();
     }
 } else {
     header('Location: index.php');
@@ -169,7 +184,8 @@ if (isset($_GET['id'])) {
                                         <?= calculatePercentage30($d['total_point']) + calculatePercentage50($d['eficiency']) + calculateValue20($d['kontrak']) ?>%
                                     </td>
                                     <?php if ($project['status'] == 0) :?>
-                                    <td><button type="button" class="btn btn-success" id="confirm-text">Konfirmasi
+                                    <td><button type="button" class="btn btn-success" id="confirm-text"
+                                            data-id="<?= $d['id_calonvendor'] ?>">Konfirmasi
                                             Pemenang</button></td>
                                     <?php endif;?>
                                 </tr>
@@ -206,9 +222,9 @@ if (isset($_GET['id'])) {
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#example1').addEventListener('click', function(event) {
-            // Check if the clicked element has the ID 'confirm-text'
             if (event.target && event.target.id === 'confirm-text') {
                 event.preventDefault();
+                var vendorId = event.target.getAttribute('data-id');
                 Swal.fire({
                     title: 'Konfirmasi Pemenang',
                     html: `
@@ -218,7 +234,7 @@ if (isset($_GET['id'])) {
                                 <label for="contract-duration" class="mb-0">Lama Kontrak (Tahun):</label>
                             </div>
                             <div class="col-6 mb-4">
-                                <input id="contract-duration" class="form-control custom-swal-input" type="number" placeholder="Masukkan lama kontrak" required>
+                                <input id="contract-duration" class="form-control custom-swal-input" type="number" name="kontrak" placeholder="Masukkan lama kontrak" required>
                             </div>
                             <div class="col-6 d-flex align-items-center justify-content-end">
                                 <label for="confirmation" class="mb-0">Ketik "Konfirmasi":</label>
@@ -261,10 +277,16 @@ if (isset($_GET['id'])) {
                         // Create a form element dynamically
                         const form = document.createElement('form');
                         form.method = 'POST';
-                        form.action = 'haha.php';
+                        form.action = 'form-ranking-calon-vendor-detail.php';
                         form.style.display = 'none'; // Hide the form
 
                         // Create and append input fields
+                        const vendorInput = document.createElement('input');
+                        vendorInput.type = 'hidden';
+                        vendorInput.name = 'id_calonvendor';
+                        vendorInput.value = vendorId;
+                        form.appendChild(vendorInput);
+
                         const contractInput = document.createElement('input');
                         contractInput.type = 'hidden';
                         contractInput.name = 'contract_duration';
@@ -286,6 +308,57 @@ if (isset($_GET['id'])) {
         });
     });
 </script>
+
+<!-- Success Alert -->
+<?php if (isset($_SESSION['msg'])): ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            title: 'Success!',
+            text: '<?php echo $_SESSION['msg']; ?>',
+            icon: 'success',
+            customClass: {
+                confirmButton: 'btn btn-primary waves-effect waves-light'
+            },
+            buttonsStyling: false
+        });
+    });
+</script>
+<?php unset($_SESSION['msg']); endif; ?>
+
+<!-- Error Alert -->
+<?php if (isset($_SESSION['error'])): ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            title: 'Error!',
+            text: '<?php echo $_SESSION['error']; ?>',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'btn btn-primary waves-effect waves-light'
+            },
+            buttonsStyling: false
+        });
+    });
+</script>
+<?php unset($_SESSION['error']); endif; ?>
+
+<!-- Validation Errors Alert -->
+<?php if (!empty($errors)): ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            title: 'Error!',
+            html: '<?php echo implode('<br>', $errors); ?>',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'btn btn-primary waves-effect waves-light'
+            },
+            buttonsStyling: false
+        });
+    });
+</script>
+<?php endif; ?>
 
 
 <?php include 'footer.php'; ?>
