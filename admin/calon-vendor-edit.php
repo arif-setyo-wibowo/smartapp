@@ -184,7 +184,7 @@ if (isset($_GET['id'])) {
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener('DOMContentLoaded', () => {
         const oeInput = document.getElementById('oe');
         const offerInput = document.getElementById('offer');
         const efficiencyInput = document.getElementById('efficiency');
@@ -195,8 +195,7 @@ if (isset($_GET['id'])) {
 
             if (!isNaN(oe) && !isNaN(offer) && oe !== 0) {
                 let efficiency = ((oe - offer) / oe) * 100;
-                efficiency = Math.max(efficiency, 0);
-                efficiencyInput.value = efficiency.toFixed(2);
+                efficiencyInput.value = efficiency.toFixed(2) + "%";
             } else {
                 efficiencyInput.value = '0';
             }

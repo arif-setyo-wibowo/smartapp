@@ -135,6 +135,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th>Kategori</th>
                                 <th>Judul Pekerjaan</th>
                                 <th>Tanggal</th>
+                                <th>Efficiency</th>
+                                <th>Status Penilaian</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -148,6 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><?= $d['nama_kategori'] ?></td>
                                 <td><?= $d['nama_project'] ?></td>
                                 <td><?= date('d/m/Y', strtotime($d['tanggal'])) ?></td>
+                                <td><?= $d['eficiency'] ?>%</td>
+                                <td><button class="btn btn-danger">Belum dinilai staff</button></td>
                                 <?php if ($d['status_calon_vendor'] == 0) :?>
                                 <td><button class="btn btn-warning">Menunggu Seleksi</button></td>
                                 <?php elseif ($d['status_calon_vendor'] == 1) :?>

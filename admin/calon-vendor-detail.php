@@ -108,7 +108,7 @@ if (isset($_GET['id'])) {
                                 <tr>
                                     <th scope="row">7</th>
                                     <td>Eficiency</td>
-                                    <td><?= $calonvendor['eficiency'] ?></td>
+                                    <td><?= $calonvendor['eficiency'] ?>%</td>
                                 </tr>
 
                             </tbody>
