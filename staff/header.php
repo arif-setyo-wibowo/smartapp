@@ -69,8 +69,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                 <div class="app-brand demo">
                 <a href="index.php" class="app-brand-link">
                     <span class="app-brand-logo demo">
-                        <img src="../assets/img/logo.jpg" style="width:95px;">
-                    </span>
+                            <img src="../assets/img/logo-2.png" style="width:95px;">
+                        </span>
                     </span>
                         <span class="app-brand-text demo menu-text fw-semibold ms-2">Materialize</span>
                 </a>

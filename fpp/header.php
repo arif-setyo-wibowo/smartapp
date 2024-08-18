@@ -72,6 +72,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <a href="" class="app-brand-link">
+                        <span class="app-brand-logo demo">
+                            <img src="../assets/img/logo-2.png" style="width:95px;">
+                        </span>
                         <span class="app-brand-text demo menu-text fw-bold ms-2">SMART PPA</span>
                     </a>
                 </div>
