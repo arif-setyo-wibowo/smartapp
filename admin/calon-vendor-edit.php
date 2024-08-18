@@ -15,16 +15,6 @@ if (isset($_GET['id'])) {
         $penawaran = intval($_POST['penawaran']);
         $eficiency = $_POST['efisiensi'];
 
-        $points = [];
-        $keterangan = [];
-        $total_point = 0;
-
-        for ($i = 1; $i <= 19; $i++) {
-            $points[$i] = isset($_POST["point_$i"]) ? intval($_POST["point_$i"]) : 0;
-            $keterangan[$i] = $koneksi->real_escape_string($_POST["keterangan_$i"]);
-            $total_point += $points[$i];
-        }
-
         // Query SQL untuk memperbarui data
         $sql = "UPDATE calonvendor 
         SET nama_vendor='$nama_vendor', 
@@ -34,46 +24,7 @@ if (isset($_GET['id'])) {
             tanggal='$tanggal', 
             oe='$oe', 
             penawaran='$penawaran', 
-            eficiency='$eficiency', 
-            total_point='$total_point', 
-            point_1='{$points[1]}',
-            keterangan_1='{$keterangan[1]}',
-            point_2='{$points[2]}',
-            keterangan_2='{$keterangan[2]}',
-            point_3='{$points[3]}',
-            keterangan_3='{$keterangan[3]}',
-            point_4='{$points[4]}',
-            keterangan_4='{$keterangan[4]}',
-            point_5='{$points[5]}',
-            keterangan_5='{$keterangan[5]}',
-            point_6='{$points[6]}',
-            keterangan_6='{$keterangan[6]}',
-            point_7='{$points[7]}',
-            keterangan_7='{$keterangan[7]}',
-            point_8='{$points[8]}',
-            keterangan_8='{$keterangan[8]}',
-            point_9='{$points[9]}',
-            keterangan_9='{$keterangan[9]}',
-            point_10='{$points[10]}',
-            keterangan_10='{$keterangan[10]}',
-            point_11='{$points[11]}',
-            keterangan_11='{$keterangan[11]}',
-            point_12='{$points[12]}',
-            keterangan_12='{$keterangan[12]}',
-            point_13='{$points[13]}',
-            keterangan_13='{$keterangan[13]}',
-            point_14='{$points[14]}',
-            keterangan_14='{$keterangan[14]}',
-            point_15='{$points[15]}',
-            keterangan_15='{$keterangan[15]}',
-            point_16='{$points[16]}',
-            keterangan_16='{$keterangan[16]}',
-            point_17='{$points[17]}',
-            keterangan_17='{$keterangan[17]}',
-            point_18='{$points[18]}',
-            keterangan_18='{$keterangan[18]}',
-            point_19='{$points[19]}',
-            keterangan_19='{$keterangan[19]}'
+            eficiency='$eficiency'
         WHERE id_calonvendor=$id_calonvendor";
 
         if ($koneksi->query($sql) === true) {
@@ -184,7 +135,7 @@ if (isset($_GET['id'])) {
 </div>
 
 <script>
-      document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
         const oeInput = document.getElementById('oe');
         const offerInput = document.getElementById('offer');
         const efficiencyInput = document.getElementById('efficiency');
@@ -195,7 +146,8 @@ if (isset($_GET['id'])) {
 
             if (!isNaN(oe) && !isNaN(offer) && oe !== 0) {
                 let efficiency = ((oe - offer) / oe) * 100;
-                efficiencyInput.value = efficiency.toFixed(2) + "%";
+                efficiency = Math.max(efficiency, 0);
+                efficiencyInput.value = efficiency.toFixed(2);
             } else {
                 efficiencyInput.value = '0';
             }

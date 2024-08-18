@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = 'Edit Calon Vendor';
+$title = 'Detail Calon Vendor';
 
 include '../koneksi.php';
 if (isset($_GET['id'])) {
