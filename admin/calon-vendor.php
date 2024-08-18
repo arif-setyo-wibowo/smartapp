@@ -259,7 +259,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if (!isNaN(oe) && !isNaN(offer) && oe !== 0) {
                 let efficiency = ((oe - offer) / oe) * 100;
-                efficiency = Math.max(efficiency, 0);
                 efficiencyInput.value = efficiency.toFixed(2);
             } else {
                 efficiencyInput.value = '0';
