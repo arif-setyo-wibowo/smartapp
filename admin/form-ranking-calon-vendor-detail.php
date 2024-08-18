@@ -1,3 +1,13 @@
+<?php
+session_start();
+$title = 'SMARTPPA Admin | Ranking Detail';
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../login_admin.php'); 
+    exit();
+}
+?>
 <?php include 'header.php'; ?>
 <div class="container-xxl flex-grow-1 container-p-y">
   <h4 class="py-3 mb-4"><span class="text-muted fw-light">SMART PPA /</span> Ranking</h4>

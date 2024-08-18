@@ -1,6 +1,12 @@
 <?php
 session_start();
-$title = 'Edit Procurement';
+$title = 'SMARTPPA Admin | Edit Procurement';
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../login_admin.php'); 
+    exit();
+}
 
 include '../koneksi.php';
 if (isset($_GET['id'])) {

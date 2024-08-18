@@ -1,7 +1,14 @@
 <?php
 session_start();
 include '../koneksi.php';
-$title ="Ubah Password Admin";
+$title = 'SMARTPPA Admin | Ubah Password Admin';
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../login_admin.php'); 
+    exit();
+}
+
 
 if (!isset($_GET['id_admin']) || empty($_GET['id_admin'])) {
     die('ID Admin tidak ditemukan!');

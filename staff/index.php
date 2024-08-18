@@ -2,6 +2,9 @@
 <?php
 session_start();
 
+
+$title = "Dashboard SMARTPPA | STAFF ";
+
 // Cek apakah pengguna sudah login
 if (!isset($_SESSION['staff'])) {
     header('Location: ../login_staff.php'); 

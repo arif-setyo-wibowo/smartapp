@@ -1,6 +1,12 @@
 <?php
 session_start();
-$title = 'Kategori';
+$title = 'SMARTPPA Admin | Kategori';
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../login_admin.php'); 
+    exit();
+}
 
 include '../koneksi.php';
 $no = 1;

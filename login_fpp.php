@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Login berhasil
                 $_SESSION['fpp'] = true;
                 $_SESSION['user'] = $username;
+                $_SESSION['nama'] = $user['nama']; 
                 $_SESSION['divisi'] = $user['divisi']; 
                 $_SESSION['msg'] = 'Login berhasil!';
                 header('Location: fpp/index.php'); // Redirect ke halaman setelah login

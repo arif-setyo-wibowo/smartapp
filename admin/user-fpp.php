@@ -1,6 +1,13 @@
 <?php
 session_start();
-$title = 'Data Tim FPP';
+$title = 'SMARTPPA Admin | Data Tim FPP';
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../login_admin.php'); 
+    exit();
+}
+
 
 include '../koneksi.php';
 

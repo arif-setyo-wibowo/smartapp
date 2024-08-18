@@ -1,7 +1,14 @@
 <?php
 session_start();
 include '../koneksi.php';
-$title = "Edit Password FPP";
+$title = 'SMARTPPA Admin | Edit Password FPP';
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../login_admin.php'); 
+    exit();
+}
+
 
 if (!isset($_GET['id_fpp']) || empty($_GET['id_fpp'])) {
     die('ID FPP tidak ditemukan!');

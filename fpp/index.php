@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$title = "Dashboard SMARTPPA | FPP ";
+
 // Cek apakah pengguna sudah login
 if (!isset($_SESSION['fpp'])) {
     header('Location: ../login_fpp.php'); 

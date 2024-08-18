@@ -1,6 +1,12 @@
 <?php
 session_start();
-$title = 'Data Tim Procurement';
+$title = 'SMARTPPA Admin | Data Tim Procurement';
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../login_admin.php'); 
+    exit();
+}
 
 include '../koneksi.php';
 $no = 1;

@@ -1,3 +1,12 @@
+<?php
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    session_unset(); 
+    session_destroy(); 
+    
+    header("Location: ../login_admin.php"); 
+    exit();
+}
+?>
 <!doctype html>
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template">
 <head>
@@ -133,7 +142,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="logout.php" class="menu-link">
+                        <a href="?action=logout" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-logout"></i>
                             <div>Logout</div>
                         </a>
@@ -181,7 +190,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="/logout">
+                                        <a class="dropdown-item" href="?action=logout">
                                             <i class="mdi mdi-logout me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>

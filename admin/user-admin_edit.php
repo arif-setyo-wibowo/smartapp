@@ -1,7 +1,14 @@
 <?php
 session_start();
 include '../koneksi.php';
-$title ="Ubah Data Admin";
+$title = 'SMARTPPA Admin | Ubah Data Admin';
+
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../login_admin.php'); 
+    exit();
+}
+
 
 // Validate admin ID
 if (!isset($_GET['id_admin']) || empty($_GET['id_admin'])) {
