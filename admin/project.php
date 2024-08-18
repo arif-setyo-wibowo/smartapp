@@ -141,8 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><button class="btn btn-warning">Menunggu Seleksi</button></td>
                                 <?php elseif ($d['status'] == 1) :?>
                                 <td><button class="btn btn-success">Terlaksana</button></td>
-                                <?php endif;?>
-                                <?= $d['nama_project'] ?>
+                                <?php endif;?> 
                                 <td>
                                     <?php if ($d['status'] == 0) :?>
                                     <a href="project_edit.php?id=<?= $d['id_project'] ?>" class="btn btn-info btn-sm">
