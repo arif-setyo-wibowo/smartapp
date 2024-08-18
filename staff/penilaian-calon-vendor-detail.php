@@ -2,7 +2,7 @@
 session_start();
 
 // Cek apakah pengguna sudah login
-if (!isset($_SESSION['user']) && !isset($_SESSION['staff'])) {
+if (!isset($_SESSION['staff'])) {
     header('Location: ../login_staff.php'); 
     exit();
 }

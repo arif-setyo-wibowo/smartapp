@@ -148,8 +148,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                <span class="fw-medium d-block"><?php echo htmlspecialchars($_SESSION['nama']); ?></span>
-                                                <small class="text-muted"><?php echo htmlspecialchars($_SESSION['user']); ?></small>
+                                                    <span class="fw-medium d-block"><?php echo htmlspecialchars($_SESSION['nama']); ?></span>
+                                                    <small class="text-muted"><?php echo htmlspecialchars($_SESSION['user']); ?></small>
                                                 </div>
                                             </div>
                                         </a>

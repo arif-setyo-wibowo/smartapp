@@ -1,3 +1,57 @@
+<?php
+session_start();
+include 'koneksi.php'; // Include your database connection file
+
+// Proses login jika metode request adalah POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $errors = [];
+
+    // Validasi input
+    if (empty($username)) {
+        $errors[] = 'Username tidak boleh kosong.';
+    }
+    if (empty($password)) {
+        $errors[] = 'Password tidak boleh kosong.';
+    }
+
+    if (empty($errors)) {
+        // Prepare SQL query to check the username and password
+        $stmt = $koneksi->prepare('SELECT * FROM fpp WHERE username = ?');
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+            // Assuming password is stored hashed
+            if (password_verify($password, $user['password'])) {
+                // Login berhasil
+                $_SESSION['fpp'] = true;
+                $_SESSION['user'] = $username;
+                $_SESSION['divisi'] = $user['divisi']; 
+                $_SESSION['msg'] = 'Login berhasil!';
+                header('Location: fpp/index.php'); // Redirect ke halaman setelah login
+                exit();
+            } else {
+                $_SESSION['error'] = 'Username atau password salah.';
+            }
+        } else {
+            $_SESSION['error'] = 'Username atau password salah.';
+        }
+
+        $stmt->close();
+    } else {
+        $_SESSION['errors'] = $errors;
+    }
+
+    header('Location: login_fpp.php');
+    exit();
+}
+?>
+
 <!doctype html>
 
 <html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
@@ -64,65 +118,53 @@
                         <h4 class="mb-2">Selamat Datang! 👋</h4>
                         <p class="mb-4">Login dengan user anda untuk masuk ke sistem</p>
                         <?php
-                    session_start(); // Start the session at the beginning of your script
+                            if (isset($_SESSION['msg'])): ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                    id="autoDismissAlert" style="margin:5px;">
+                                    <?php echo $_SESSION['msg']; ?>
+                                </div>
+                                <?php unset($_SESSION['msg']); // Clear the message after displaying it
+                            endif; ?>
 
-                    // Display success message if it exists
-                    if (isset($_SESSION['msg'])): ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert"
-                            id="autoDismissAlert" style="margin:5px;">
-                            <?php echo $_SESSION['msg']; ?>
-                        </div>
-                        <?php unset($_SESSION['msg']); // Clear the message after displaying it
-                    endif; ?>
+                                <?php
+                            // Display error message if it exists
+                            if (isset($_SESSION['error'])): ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
+                                    style="margin:5px;">
+                                    <?php echo $_SESSION['error']; ?>
+                                </div>
+                                <?php unset($_SESSION['error']); // Clear the error after displaying it
+                            endif; ?>
 
-                        <?php
-                    // Display error message if it exists
-                    if (isset($_SESSION['error'])): ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
-                            style="margin:5px;">
-                            <?php echo $_SESSION['error']; ?>
-                        </div>
-                        <?php unset($_SESSION['error']); // Clear the error after displaying it
-                    endif; ?>
-
-                        <?php
-                    // Display validation errors if they exist
-                    if (!empty($_SESSION['errors'])): ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
-                            style="margin:5px;">
-                            <?php foreach ($_SESSION['errors'] as $error): ?>
-                            <?php echo $error; ?><br>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php unset($_SESSION['errors']); // Clear the errors after displaying them
-                    endif; ?>
+                                <?php
+                            // Display validation errors if they exist
+                            if (!empty($_SESSION['errors'])): ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert"
+                                    style="margin:5px;">
+                                    <?php foreach ($_SESSION['errors'] as $error): ?>
+                                    <?php echo $error; ?><br>
+                                    <?php endforeach; ?>
+                                </div>
+                                <?php unset($_SESSION['errors']); // Clear the errors after displaying them
+                            endif; ?>
 
 
-                        <form id="formAuthentication" class="mb-3" action="" method="post">
+                        <form class="mb-3" action="" method="post">
                             <div class="form-floating form-floating-outline mb-3">
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Masukkan email" autofocus />
-                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="username" placeholder="Masukkan Username" required />
+                                <label for="username">Username</label>
                             </div>
                             <div class="mb-3">
                                 <div class="form-password-toggle">
                                     <div class="input-group input-group-merge">
                                         <div class="form-floating form-floating-outline">
-                                            <input type="password" id="password" class="form-control" name="password"
-                                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                                aria-describedby="password" />
+                                            <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required />
                                             <label for="password">Password</label>
                                         </div>
-                                        <span class="input-group-text cursor-pointer"><i
-                                                class="mdi mdi-eye-off-outline"></i></span>
+                                        <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="mb-3 text-end">
-                            <a href="{{ url('forgot') }}">
-                                <span>Lupa Password?</span>
-                            </a>
-                        </div>  -->
                             <div class="mb-3">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
                             </div>
