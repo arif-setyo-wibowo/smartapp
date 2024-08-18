@@ -67,9 +67,13 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
             <!-- Menu -->
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="#" class="app-brand-link">
-                        <span class="app-brand-text demo menu-text fw-bold ms-2">SMART PPA</span>
-                    </a>
+                <a href="index.php" class="app-brand-link">
+                    <span class="app-brand-logo demo">
+                        <img src="../assets/img/logo.jpg" style="width:95px;">
+                    </span>
+                    </span>
+                        <span class="app-brand-text demo menu-text fw-semibold ms-2">Materialize</span>
+                </a>
                 </div>
 
                 <div class="menu-inner-shadow"></div>

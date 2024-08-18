@@ -58,13 +58,11 @@
         <div class="navbar navbar-expand-lg landing-navbar border-top-0 px-3 px-md-4">
             <!-- Menu logo wrapper: Start -->
             <div class="navbar-brand app-brand demo d-flex py-0 py-lg-2 me-4">
-                <!-- Mobile menu toggle: Start-->
-                <button class="navbar-toggler border-0 px-0 me-2" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="tf-icons mdi mdi-menu mdi-24px align-middle"></i>
-                </button>
-                <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">SMART PPA</span>
+                <a href="landing-page.html" class="app-brand-link">
+                    <span class="app-brand-logo demo">
+                        <img src="assets/img/logo.jpg" style="width:95px;">
+                    </span>
+                    <span class="app-brand-text demo menu-text  ms-2 ps-1">SMART PPA</span>
                 </a>
             </div>
             <!-- Menu logo wrapper: End -->
@@ -104,14 +102,6 @@
                     </ul>
                 </li>
                 <!-- / Style Switcher-->
-
-                <!-- navbar button: Start -->
-                <li>
-                    <a href="{{ route('login.front') }}" class="btn btn-primary px-2 px-sm-4 px-lg-2 px-xl-4"
-                        target="_blank"><span class="tf-icons mdi mdi-account me-md-1"></span><span
-                            class="d-none d-md-block">LOGO 1</span></a>
-                </li>
-                <!-- navbar button: End -->
             </ul>
             <!-- Toolbar: End -->
         </div>
@@ -161,43 +151,9 @@
         <section id="landingFeatures" class="section-py landing-features">
             <div class="container">
                 <h6 class="text-center fw-semibold d-flex justify-content-center align-items-center mb-4">
-                    <img src="assets/img/front-pages/icons/section-tilte-icon.png" alt="section title icon"
-                        class="me-2" />
-                    <span class="text-uppercase">LOGO 2</span>
+                    
                 </h6>
-                <!-- <h3 class="text-center mb-2"><span class="fw-bold">Semua yang anda butuhkan</span> untuk membangun karir yang profesional</h3> -->
-                <!-- <div class="features-icon-wrapper row gx-0 gy-4 g-sm-5 mt-3">
-                <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-                    <div class="features-icon mb-3">
-                        <img src="assets
-                        /img/front-pages/icons/laptop-charging.png" alt="laptop charging" />
-                    </div>
-                    <h5 class="mb-2">Materi Berkualitas</h5>
-                    <p class="features-icon-description">
-                        Dapatkan materi-materi yang ditulis para ahli di bidangnya.
-                    </p>
-                </div>
-                <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-                    <div class="features-icon mb-3">
-                        <img src="assets
-                        /img/front-pages/icons/transition-up.png" alt="transition up" />
-                    </div>
-                    <h5 class="mb-2">Update Berkala</h5>
-                    <p class="features-icon-description">
-                        Materi-materi diperbarui secara berkala.
-                    </p>
-                </div>
-                <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-                    <div class="features-icon mb-3">
-                        <img src="assets
-                        /img/front-pages/icons/edit.png" alt="edit" />
-                    </div>
-                    <h5 class="mb-2">Stater-Kit</h5>
-                    <p class="features-icon-description">
-                        Cukup bayar 1 kali, dapatkan semua materi.
-                    </p>
-                </div>
-            </div> -->
+              
             </div>
         </section>
         <!-- Useful features: End -->
@@ -213,22 +169,11 @@
             <div
                 class="container d-flex flex-wrap justify-content-between flex-md-row flex-column text-center text-md-start">
                 <div class="mb-2 mb-md-0">
-                    <span class="footer-text">©
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        , Made with <i class="tf-icons mdi mdi-heart text-danger"></i>
                     </span>
                 </div>
                 <div>
-                    <a href="https://github.com/pixinvent" class="footer-link me-2" target="_blank"><i
-                            class="mdi mdi-github"></i></a>
-                    <a href="https://www.facebook.com/pixinvents/" class="footer-link me-2" target="_blank"><i
-                            class="mdi mdi-facebook"></i></a>
-                    <a href="https://twitter.com/pixinvents" class="footer-link me-2" target="_blank"><i
-                            class="mdi mdi-twitter"></i></a>
-                    <a href="https://www.instagram.com/pixinvents/" class="footer-link" target="_blank"><i
-                            class="mdi mdi-instagram"></i></a>
+                    <a href="https://www.pertamina.com" class="footer-link me-2" target="_blank"><i
+                            class="mdi mdi-web"></i></a>
                 </div>
             </div>
         </div>
