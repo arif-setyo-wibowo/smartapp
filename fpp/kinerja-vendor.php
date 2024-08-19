@@ -11,7 +11,8 @@ $title = 'Penilaian Kinerja Vendor';
 
 include '../koneksi.php';
 $no = 1;
-$data = mysqli_query($koneksi, 'SELECT pk.*, p.nama_project, p.id_project , k.nama_kategori, c.nama_vendor FROM pk_fpp pk JOIN calonvendor c ON pk.id_vendor = c.id_calonvendor JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori');
+$id_divisi = $_SESSION['id_divisi'];
+$data = mysqli_query($koneksi, "SELECT pk.*, p.nama_project, p.id_project , k.nama_kategori, c.nama_vendor FROM pk_fpp pk JOIN calonvendor c ON pk.id_vendor = c.id_calonvendor JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori WHERE p.id_divisi=$id_divisi");
 ?>
 
 <?php include 'header.php'; ?>
