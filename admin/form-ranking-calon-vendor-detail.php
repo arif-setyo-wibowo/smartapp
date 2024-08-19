@@ -101,7 +101,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $idup = $row['id_calonvendor'];
                 $koneksi->query("UPDATE calonvendor SET status_calon_vendor='1' WHERE id_calonvendor=$idup");
             }
-            $_SESSION['msg'] = 'Pemenang berhasil ditentukan!';
+            $insert1 = $koneksi->query("INSERT INTO pk_staff (id_vendor, id_project) VALUES ('$id_calonvendor','$id_project')");
+            if ($insert1 === true) {
+                $insert2 = $koneksi->query("INSERT INTO pk_fpp (id_vendor) VALUES ('$id_calonvendor')");
+                if ($insert2 === true) {
+                    $_SESSION['msg'] = 'Pemenang berhasil ditentukan!';
+                }
+            }
         }
     }
     header('Location: project.php');

@@ -14,7 +14,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title></title>
+    <title><?= $title ?></title>
 
     <meta name="description" content="" />
 
@@ -90,7 +90,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                         <a href="index.php" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
                             <div>Dashboards</div>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info text-white">1</span>
+                            
                         </a>
                     </li>
                     <li class="menu-header fw-medium mt-4">
