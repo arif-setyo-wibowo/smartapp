@@ -269,14 +269,15 @@ if (isset($_GET['id_kategori']) && isset($_GET['id_project']) && isset($_GET['je
                             <td><?= $d['nama_project'] ?></td>
                             <td><?= date('d/m/Y', strtotime($d['tanggal'])) ?></td>
                             <?php if ($d['status_nilai'] == 0) : ?>
-                            <td><a href="penilaian-vendor-edit.php?id=<?= $d['id_vendor'] ?>"><button class="btn btn-primary">Belum
-                                    dinilai</button></a></td>
+                            <td><button class="btn btn-primary">Belum
+                                    dinilai</button></td>
                             <?php elseif ($d['status_nilai'] == 1) : ?>
                             <td><button class="btn btn-success">Sudah Dinilai</button></td>
                             <?php endif; ?>
+                            
+                         <td hidden></td>
                         </tr>
                         <?php endwhile; ?>
-                        <td hidden></td>
                     </tbody>
                 </table>
                 <?php elseif ($jenis == "pk_fpp") : ?>
