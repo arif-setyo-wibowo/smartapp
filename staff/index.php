@@ -44,6 +44,8 @@ if (!isset($_SESSION['staff'])) {
                                 <tr>
                                     <th>No</th>
                                     <th>Kategori</th>
+                                    
+                                    <th hidden></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -52,6 +54,8 @@ if (!isset($_SESSION['staff'])) {
                                     <td><?= $no++ ?></td>
                                     <td><a href="form-ranking.php?id=<?= $d['id_kategori'] ?>"
                                             class="btn btn-text-dark waves-effect waves-light"><?= $d['nama_kategori'] ?></a></td>
+                                
+                                    <td hidden></td>
                                 </tr>
                                 <?php endwhile; ?>
                             </tbody>

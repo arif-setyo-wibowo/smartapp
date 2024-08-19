@@ -18,7 +18,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../assets/logo-atas.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -102,7 +102,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                     <li class="menu-header fw-medium mt-4">
                         <span class="menu-header-text">Action Data</span>
                     </li>
-                    <li class="menu-item" style="">
+                    <?php 
+                        $current_page = basename($_SERVER['PHP_SELF']); 
+
+                        $input_menu_active = ($current_page == 'kategori.php' || $current_page == 'divisi.php' || $current_page == 'project.php' || $current_page == 'calon-vendor.php');
+
+                        $data_akses_menu_active = ($current_page == 'procurement.php' || $current_page == 'user-admin.php' || $current_page == 'user-fpp.php');
+                        ?>
+
+                    <li class="menu-item <?php echo ($input_menu_active) ? 'active open' : ''; ?>">
                         <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
                             <i class="menu-icon mdi mdi-plus-box-multiple-outline"></i>
                             <div>Input</div>
@@ -110,34 +118,28 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                         <ul class="menu-sub">
                             <li class="menu-item <?php echo ($current_page == 'kategori.php') ? 'active' : ''; ?>">
                                 <a href="kategori.php" class="menu-link">
-                                    
                                     <div>Kategori</div>
                                 </a>
                             </li>
                             <li class="menu-item <?php echo ($current_page == 'divisi.php') ? 'active' : ''; ?>">
                                 <a href="divisi.php" class="menu-link">
-                                    
                                     <div>Divisi</div>
                                 </a>
                             </li>
                             <li class="menu-item <?php echo ($current_page == 'project.php') ? 'active' : ''; ?>">
                                 <a href="project.php" class="menu-link">
-                                    
                                     <div>Project</div>
                                 </a>
                             </li>
                             <li class="menu-item <?php echo ($current_page == 'calon-vendor.php') ? 'active' : ''; ?>">
                                 <a href="calon-vendor.php" class="menu-link">
-                                   
                                     <div>Calon Vendor</div>
                                 </a>
                             </li>
                         </ul>
-                        </li>
+                    </li>
 
-                    
-                    
-                    <li class="menu-item" style="">
+                    <li class="menu-item <?php echo ($data_akses_menu_active) ? 'active open' : ''; ?>">
                         <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
                             <i class="menu-icon mdi mdi-camera-account"></i>
                             <div>Data Akses</div>
@@ -145,24 +147,22 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                         <ul class="menu-sub">
                             <li class="menu-item <?php echo ($current_page == 'procurement.php') ? 'active' : ''; ?>">
                                 <a href="procurement.php" class="menu-link">
-                                    
                                     <div>Data Tim Procurement</div>
                                 </a>
                             </li>
                             <li class="menu-item <?php echo ($current_page == 'user-admin.php') ? 'active' : ''; ?>">
                                 <a href="user-admin.php" class="menu-link">
-                                    
                                     <div>Data Admin</div>
                                 </a>
                             </li>
                             <li class="menu-item <?php echo ($current_page == 'user-fpp.php') ? 'active' : ''; ?>">
                                 <a href="user-fpp.php" class="menu-link">
-                                   
                                     <div>Data FPP</div>
                                 </a>
                             </li>
                         </ul>
                     </li>
+
                     <li class="menu-item">
                         <a href="?action=logout" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-logout"></i>

@@ -12,12 +12,14 @@ if (!isset($_SESSION['fpp'])) {
 include '../koneksi.php';
 $id_divisi = $_SESSION['id_divisi'];
 $data = mysqli_query($koneksi, "SELECT p.*, d.nama_divisi, pk.ratarata 
-                                FROM project p 
-                                JOIN divisi d ON p.id_divisi = d.id_divisi 
-                                JOIN pk_fpp pk 
-                                WHERE p.id_divisi = $id_divisi 
-                                  AND p.status = '1' 
-                                  AND pk.ratarata IS NULL");
+                                    FROM project p 
+                                    JOIN divisi d ON p.id_divisi = d.id_divisi 
+                                    JOIN calonvendor c ON c.id_project = p.id_project 
+                                    JOIN pk_fpp pk ON pk.id_vendor = c.id_calonvendor 
+                                    WHERE p.id_divisi = $id_divisi 
+                                    AND p.status = '1' 
+                                    AND pk.ratarata IS NULL
+                                ");
 
 ?>
 

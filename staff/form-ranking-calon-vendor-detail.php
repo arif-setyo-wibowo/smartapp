@@ -169,6 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <?php if ($project['status'] == 0) :?>
                                     <th>Action</th>
                                     <?php endif;?>
+                                    <th hidden></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -194,6 +195,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             data-id="<?= $d['id_calonvendor'] ?>">Konfirmasi
                                             Pemenang</button></td>
                                     <?php endif;?>
+                                    
+                                    <td hidden></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

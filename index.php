@@ -8,12 +8,12 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Landing Page - SMART PPA</title>
+    <title>SMART PPA | HOME</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/logo-atas.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -134,12 +134,12 @@
                 </div>
                 <div class="position-relative hero-animation-img">
                     <div class="hero-dashboard-img text-center">
-                        <img src="assets/custom_img/main.png" alt="hero dashboard" class="animation-img"
+                        <img src="assets/custom_img/main.png" alt="hero dashboard" class="animation-img" 
                             data-speed="2" />
                     </div>
                     <div class="position-absolute hero-elements-img">
-                        <img src="assets/custom_img/addon.png" alt="hero elements" class="animation-img"
-                            data-speed="4" />
+                        <!-- <img src="assets/custom_img/addon.png" alt="hero elements" class="animation-img"
+                            data-speed="4" /> -->
                     </div>
                     </a>
                 </div>
