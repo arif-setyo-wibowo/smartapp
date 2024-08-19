@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['admin'] = true;
                 $_SESSION['user'] = $username;
                 $_SESSION['nama'] = $user['nama']; 
+                $_SESSION['foto'] = $user['foto']; 
                 $_SESSION['msg'] = 'Login berhasil!';
                 header('Location: admin/index.php'); 
                 exit();
@@ -68,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login</title>
+    <title>SMART PPA | Login Admin</title>
 
     <meta name="description" content="" />
 

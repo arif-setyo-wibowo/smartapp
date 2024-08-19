@@ -91,33 +91,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                         </a>
                     </li>
                     <li class="menu-header fw-medium mt-4">
-                        <span class="menu-header-text">Action Data</span>
-                    </li>
-                    
-
-                    <li class="menu-item <?php echo ($current_page == 'kategori.php') ? 'active' : ''; ?>">
-                        <a href="kategori.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-shape"></i>
-                            <div>Kategori</div>
-                        </a>
-                    </li>
-                    <li class="menu-item <?php echo ($current_page == 'divisi.php') ? 'active' : ''; ?>">
-                        <a href="divisi.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-shield-outline"></i>
-                            <div>Divisi</div>
-                        </a>
-                    </li>
-                    <li class="menu-item <?php echo ($current_page == 'project.php') ? 'active' : ''; ?>">
-                        <a href="project.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>
-                            <div>Project</div>
-                        </a>
-                    </li>
-                    <li class="menu-item <?php echo ($current_page == 'calon-vendor.php') ? 'active' : ''; ?>">
-                        <a href="calon-vendor.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-account-supervisor-circle"></i>
-                            <div>Calon Vendor</div>
-                        </a>
+                        <span class="menu-header-text">Report Data</span>
                     </li>
                     <li class="menu-item <?php echo ($current_page == 'penilaian.php') ? 'active' : ''; ?>">
                         <a href="penilaian.php" class="menu-link">
@@ -125,23 +99,69 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                             <div>Penilaian</div>
                         </a>
                     </li>
-                    <li class="menu-item <?php echo ($current_page == 'procurement.php') ? 'active' : ''; ?>">
-                        <a href="procurement.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-account-group-outline"></i>
-                            <div>Data Tim Procurement</div>
-                        </a>
+                    <li class="menu-header fw-medium mt-4">
+                        <span class="menu-header-text">Action Data</span>
                     </li>
-                    <li class="menu-item <?php echo ($current_page == 'user-admin.php') ? 'active' : ''; ?>">
-                        <a href="user-admin.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-calendar-account"></i>
-                            <div>Data Admin</div>
+                    <li class="menu-item" style="">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
+                            <i class="menu-icon mdi mdi-plus-box-multiple-outline"></i>
+                            <div>Input</div>
                         </a>
-                    </li>
-                    <li class="menu-item <?php echo ($current_page == 'user-fpp.php') ? 'active' : ''; ?>">
-                        <a href="user-fpp.php" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-account-supervisor"></i>
-                            <div>Data FPP</div>
+                        <ul class="menu-sub">
+                            <li class="menu-item <?php echo ($current_page == 'kategori.php') ? 'active' : ''; ?>">
+                                <a href="kategori.php" class="menu-link">
+                                    
+                                    <div>Kategori</div>
+                                </a>
+                            </li>
+                            <li class="menu-item <?php echo ($current_page == 'divisi.php') ? 'active' : ''; ?>">
+                                <a href="divisi.php" class="menu-link">
+                                    
+                                    <div>Divisi</div>
+                                </a>
+                            </li>
+                            <li class="menu-item <?php echo ($current_page == 'project.php') ? 'active' : ''; ?>">
+                                <a href="project.php" class="menu-link">
+                                    
+                                    <div>Project</div>
+                                </a>
+                            </li>
+                            <li class="menu-item <?php echo ($current_page == 'calon-vendor.php') ? 'active' : ''; ?>">
+                                <a href="calon-vendor.php" class="menu-link">
+                                   
+                                    <div>Calon Vendor</div>
+                                </a>
+                            </li>
+                        </ul>
+                        </li>
+
+                    
+                    
+                    <li class="menu-item" style="">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
+                            <i class="menu-icon mdi mdi-camera-account"></i>
+                            <div>Data Akses</div>
                         </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item <?php echo ($current_page == 'procurement.php') ? 'active' : ''; ?>">
+                                <a href="procurement.php" class="menu-link">
+                                    
+                                    <div>Data Tim Procurement</div>
+                                </a>
+                            </li>
+                            <li class="menu-item <?php echo ($current_page == 'user-admin.php') ? 'active' : ''; ?>">
+                                <a href="user-admin.php" class="menu-link">
+                                    
+                                    <div>Data Admin</div>
+                                </a>
+                            </li>
+                            <li class="menu-item <?php echo ($current_page == 'user-fpp.php') ? 'active' : ''; ?>">
+                                <a href="user-fpp.php" class="menu-link">
+                                   
+                                    <div>Data FPP</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="menu-item">
                         <a href="?action=logout" class="menu-link">
@@ -169,7 +189,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img src="../uploads/<?php echo $_SESSION['foto'] ?>" class="w-px-40 h-auto rounded-circle">
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -178,7 +198,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="../uploads/<?php echo $_SESSION['foto'] ?>" class="w-px-40 h-auto rounded-circle">
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">

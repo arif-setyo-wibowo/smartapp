@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `foto` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin`
@@ -98,9 +98,9 @@ CREATE TABLE `calonvendor` (
   `keterangan_19` text,
   `total_point` bigint DEFAULT '0',
   `status_point` enum('0','1') NOT NULL DEFAULT '0',
-  `status_calon_vendor` enum('0','1','2') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `status_calon_vendor` enum('0','1','2') CHARACTER SET utf8 NOT NULL DEFAULT '0',
   `kontrak` bigint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `calonvendor`
@@ -120,7 +120,7 @@ INSERT INTO `calonvendor` (`id_calonvendor`, `id_procurement`, `id_project`, `na
 CREATE TABLE `divisi` (
   `id_divisi` int NOT NULL,
   `nama_divisi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `divisi`
@@ -145,7 +145,7 @@ CREATE TABLE `fpp` (
   `id_divisi` int NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `fpp`
@@ -163,7 +163,7 @@ INSERT INTO `fpp` (`id_fpp`, `nama`, `id_divisi`, `username`, `password`) VALUES
 CREATE TABLE `kategori` (
   `id_kategori` int NOT NULL,
   `nama_kategori` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `kategori`
@@ -190,7 +190,7 @@ CREATE TABLE `pk_fpp` (
   `delivery` int DEFAULT '0',
   `service` int DEFAULT '0',
   `ratarata` int DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `pk_fpp`
@@ -239,7 +239,7 @@ CREATE TABLE `pk_staff` (
   `keterangan_13` text,
   `total_point` int DEFAULT '0',
   `status_nilai` enum('0','1') DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `pk_staff`
@@ -259,7 +259,7 @@ CREATE TABLE `procurement` (
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `no_id` bigint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `procurement`
@@ -280,7 +280,7 @@ CREATE TABLE `project` (
   `id_divisi` int NOT NULL,
   `nama_project` varchar(255) NOT NULL,
   `status` enum('0','1') NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `project`

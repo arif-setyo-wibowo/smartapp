@@ -117,6 +117,7 @@ if (isset($_GET['id_kategori']) && isset($_GET['id_project']) && isset($_GET['je
                                 <th>Project</th>
                                 <th>Kategori Project</th>
                                 <th><?= (!empty($d['total_point'])) ? 'Total Poin' : 'Rata Rata' ?></th>
+                                <th hidden></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,6 +128,7 @@ if (isset($_GET['id_kategori']) && isset($_GET['id_project']) && isset($_GET['je
                                 <td><?= $d['nama_project']?></td>
                                 <td><?= $d['nama_kategori']?></td>
                                 <td><?= (!empty($d['total_point'])) ? $d['total_point'] : $d['ratarata']?></td>
+                                <td hidden></td>
                             </tr>
                             <?php endwhile;?>
                         </tbody>

@@ -78,7 +78,6 @@ function calculateValue20($value)
 
 <?php
 session_start();
-$title = 'SMARTPPA Admin | Ranking Detail';
 
 // Cek apakah pengguna sudah login
 if (!isset($_SESSION['admin'])) {
@@ -110,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     }
-    header('Location: project.php');
+    header('Location: form-ranking-calon-vendor-detail.php?id=' . $id_project);
     exit();
 } elseif (isset($_GET['id'])) {
     $id_project = intval($_GET['id']);
@@ -134,14 +133,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     } else {
         $_SESSION['error'] = 'Project tidak ditemukan!';
-        header('Location: project.php');
+        header('Location: index.php');
         exit();
     }
 } else {
-    header('Location: project.php');
+    header('Location: index.php');
     exit();
 }
 ?>
+
 <?php include 'header.php'; ?>
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="py-3 mb-4"><span class="text-muted fw-light">SMART PPA /</span> Ranking</h4>
@@ -166,9 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <th>Kontrak</th>
                                     <th>Bobot ( 20 % )</th>
                                     <th id="total-header">Total</th>
-                                    <?php if ($project['status'] == 0) :?>
-                                    <th>Action</th>
-                                    <?php endif;?>
+                                    <th hidden></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -189,11 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <td class="total-cell">
                                         <?= calculatePercentage30($d['total_point']) + calculatePercentage50($d['eficiency']) + calculateValue20($d['kontrak']) ?>%
                                     </td>
-                                    <?php if ($project['status'] == 0) :?>
-                                    <td><button type="button" class="btn btn-success" id="confirm-text"
-                                            data-id="<?= $d['id_calonvendor'] ?>">Konfirmasi
-                                            Pemenang</button></td>
-                                    <?php endif;?>
+                                    <td hidden></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -314,5 +308,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     });
 </script>
+
+<!-- Success Alert -->
+<?php if (isset($_SESSION['msg'])): ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            title: 'Success!',
+            text: '<?php echo $_SESSION['msg']; ?>',
+            icon: 'success',
+            customClass: {
+                confirmButton: 'btn btn-primary waves-effect waves-light'
+            },
+            buttonsStyling: false
+        });
+    });
+</script>
+<?php unset($_SESSION['msg']); endif; ?>
+
+<!-- Error Alert -->
+<?php if (isset($_SESSION['error'])): ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            title: 'Error!',
+            text: '<?php echo $_SESSION['error']; ?>',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'btn btn-primary waves-effect waves-light'
+            },
+            buttonsStyling: false
+        });
+    });
+</script>
+<?php unset($_SESSION['error']); endif; ?>
+
+<!-- Validation Errors Alert -->
+<?php if (!empty($errors)): ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            title: 'Error!',
+            html: '<?php echo implode('<br>', $errors); ?>',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'btn btn-primary waves-effect waves-light'
+            },
+            buttonsStyling: false
+        });
+    });
+</script>
+<?php endif; ?>
+
 
 <?php include 'footer.php'; ?>

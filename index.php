@@ -62,7 +62,7 @@
                     <span class="app-brand-logo demo">
                         <img src="assets/img/logo.jpg" style="width:95px;">
                     </span>
-                    <span class="app-brand-text demo menu-text  ms-2 ps-1">SMART PPA</span>
+                    <span class="app-brand-text demo menu-text  ms-2 ps-1 mt-2">SMART PPA</span>
                 </a>
             </div>
             <!-- Menu logo wrapper: End -->

@@ -11,7 +11,14 @@ if (!isset($_SESSION['fpp'])) {
 
 include '../koneksi.php';
 $id_divisi = $_SESSION['id_divisi'];
-$data = mysqli_query($koneksi, "SELECT p.*, d.nama_divisi from project p JOIN divisi d ON p.id_divisi = d.id_divisi WHERE p.id_divisi=$id_divisi AND p.status='1'");
+$data = mysqli_query($koneksi, "SELECT p.*, d.nama_divisi, pk.ratarata 
+                                FROM project p 
+                                JOIN divisi d ON p.id_divisi = d.id_divisi 
+                                JOIN pk_fpp pk 
+                                WHERE p.id_divisi = $id_divisi 
+                                  AND p.status = '1' 
+                                  AND pk.ratarata IS NULL");
+
 ?>
 
 <?php include 'header.php'; ?>

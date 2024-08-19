@@ -143,7 +143,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                                 </div>
                                                 <div class="flex-grow-1">
                                                 <span class="fw-medium d-block"><?php echo htmlspecialchars($_SESSION['nama']); ?></span>
-                                                <small class="text-muted"><?php echo htmlspecialchars($_SESSION['divisi']); ?></small>
+                                                <small class="text-muted"><?php echo htmlspecialchars($_SESSION['id_divisi']); ?></small>
                                                 </div>
                                             </div>
                                         </a>
