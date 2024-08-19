@@ -72,7 +72,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                             <img src="../assets/img/logo-2.png" style="width:95px;">
                         </span>
                     </span>
-                        <span class="app-brand-text demo menu-text fw-semibold ms-2">SMART PPA</span>
+                        <span class="app-brand-text demo menu-text fw-semibold ms-2 mt-2">SMART PPA</span>
                 </a>
                 </div>
 
