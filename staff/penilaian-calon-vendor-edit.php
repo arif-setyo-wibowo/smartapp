@@ -114,8 +114,6 @@ if (isset($_GET['id'])) {
 
 ?>
 
-
-
 <?php include 'header.php'; ?>
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="py-3 mb-4"><span class="text-muted fw-light">SMART PPA /</span>Penilaian Calon Vendor</h4>
@@ -516,4 +514,26 @@ if (isset($_GET['id'])) {
     </div>
 
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const oeInput = document.getElementById('oe');
+        const offerInput = document.getElementById('offer');
+        const efficiencyInput = document.getElementById('efficiency');
+
+        function calculateEfficiency() {
+            const oe = parseFloat(oeInput.value);
+            const offer = parseFloat(offerInput.value);
+
+            if (!isNaN(oe) && !isNaN(offer) && oe !== 0) {
+                let efficiency = ((oe - offer) / oe) * 100;
+                efficiencyInput.value = efficiency.toFixed(2);
+            } else {
+                efficiencyInput.value = '0';
+            }
+        }
+
+        oeInput.addEventListener('input', calculateEfficiency);
+        offerInput.addEventListener('input', calculateEfficiency);
+    });
+</script>
 <?php include 'footer.php'; ?>
