@@ -320,7 +320,7 @@ if (isset($_GET['id'])) {
                                     <?php endif;?>
                                 </tr>
                                 <tr>
-                                    <td><a href="calon-vendor.php" class="btn btn-danger">Kembali</a></td>
+                                    <td><a href="penilaian-calon-vendor.php" class="btn btn-danger">Kembali</a></td>
                                 </tr>
                             </tfoot>
 

@@ -11,7 +11,23 @@ $title = 'Penilaian Kinerja Vendor';
 
 include '../koneksi.php';
 $no = 1;
-$data = mysqli_query($koneksi, 'SELECT pk.*, p.nama_project, k.nama_kategori, c.nama_vendor FROM pk_staff pk JOIN project p ON pk.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori JOIN calonvendor c ON pk.id_vendor = c.id_calonvendor');
+$data = mysqli_query($koneksi, 'SELECT 
+                                    pk.*, 
+                                    p.nama_project, 
+                                    k.nama_kategori, 
+                                    c.nama_vendor, 
+                                    d.nama_divisi
+                                FROM 
+                                    pk_staff pk
+                                JOIN 
+                                    project p ON pk.id_project = p.id_project
+                                JOIN 
+                                    kategori k ON p.id_kategori = k.id_kategori
+                                JOIN 
+                                    calonvendor c ON pk.id_vendor = c.id_calonvendor
+                                JOIN 
+                                    divisi d ON p.id_divisi = d.id_divisi;
+                                ');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'];
@@ -119,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th>Total Penilaian</th>
                                 <th>Kategori</th>
                                 <th>Judul Pekerjaan</th>
+                                <th>Divisi</th>
                                 <th>Tanggal</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -132,6 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><?= !empty($d['total_point']) ? $d['total_point'] : '-'  ?></td>
                                 <td><?= $d['nama_kategori'] ?></td>
                                 <td><?= $d['nama_project'] ?></td>
+                                <td><?= $d['nama_divisi'] ?></td>
                                 <td><?= date('d/m/Y', strtotime($d['tanggal'])) ?></td>
                                 <?php if ($d['status_nilai'] == 0) :?>
                                     <td><a href="penilaian-vendor-edit.php?id=<?= $d['id_vendor'] ?>"><button class="btn btn-primary">Belum

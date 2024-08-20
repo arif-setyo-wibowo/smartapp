@@ -10,7 +10,22 @@ if (!isset($_SESSION['admin'])) {
 
 include '../koneksi.php';
 $no = 1;
-$data = mysqli_query($koneksi, 'SELECT c.*, p.nama_project, k.nama_kategori FROM calonvendor c JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori');
+$data = mysqli_query($koneksi, 'SELECT 
+    c.*, 
+    p.nama_project, 
+    k.nama_kategori, 
+    d.nama_divisi
+FROM 
+    calonvendor c 
+JOIN 
+    project p ON c.id_project = p.id_project 
+JOIN 
+    kategori k ON p.id_kategori = k.id_kategori 
+JOIN 
+    pk_fpp pk ON pk.id_vendor = c.id_calonvendor
+JOIN 
+    divisi d ON p.id_divisi = d.id_divisi;
+');
 $dataProject = mysqli_query($koneksi, 'SELECT * FROM project WHERE status="0"');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -138,6 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th>Total Penilaian</th>
                                 <th>Kategori</th>
                                 <th>Judul Pekerjaan</th>
+                                <th>Divisi</th>
                                 <th>Tanggal</th>
                                 <th>Efficiency</th>
                                 <th>Status Penilaian</th>
@@ -153,6 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><?= $d['total_point'] ? $d['total_point'] : '-' ?></td>
                                 <td><?= $d['nama_kategori'] ?></td>
                                 <td><?= $d['nama_project'] ?></td>
+                                <td><?= $d['nama_divisi']?></td>
                                 <td><?= date('d/m/Y', strtotime($d['tanggal'])) ?></td>
                                 <td><?= $d['eficiency'] ?>%</td>
                                 <?php if ($d['status_point'] == 0) :?>

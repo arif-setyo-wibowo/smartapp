@@ -133,6 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th>No</th>
                                 <th>Project</th>
                                 <th>Kategori Project</th>
+                                <th>Divisi</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -143,6 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><?= $no++ ?></td>
                                 <td><?= $d['nama_project'] ?></td>
                                 <td><?= $d['nama_kategori'] ?></td>
+                                <td><?= $d['nama_divisi'] ?></td>
                                 <?php if ($d['status'] == 0) :?>
                                 <td><button class="btn btn-warning">Menunggu Seleksi</button></td>
                                 <?php elseif ($d['status'] == 1) :?>

@@ -17,7 +17,15 @@ if (isset($_GET['id'])) {
         $kategori = mysqli_fetch_assoc($result);
         $title = 'Ranking Calon Vendor Kategori ' . $kategori['nama_kategori'];
         $no = 1;
-        $dataProject = mysqli_query($koneksi, "SELECT * FROM project WHERE id_kategori = $id_kategori");
+        $dataProject = mysqli_query($koneksi, "SELECT 
+                                                    p.*, 
+                                                    d.nama_divisi 
+                                                FROM 
+                                                    project p 
+                                                JOIN 
+                                                    divisi d ON p.id_divisi = d.id_divisi 
+                                                WHERE 
+                                                    p.id_kategori = $id_kategori;");
     } else {
         $_SESSION['error'] = 'Kategori tidak ditemukan!';
         header('Location: index.php');
@@ -45,6 +53,7 @@ if (isset($_GET['id'])) {
                                     <th>No</th>
                                     <th>Kategori</th>
                                     <th>Judul Project</th>
+                                    <th>Divisi</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -55,6 +64,7 @@ if (isset($_GET['id'])) {
                                     <td><?= $no++ ?></td>
                                     <td><?= $kategori['nama_kategori'] ?></td>
                                     <td><?= $d['nama_project'] ?></td>
+                                    <td><?= $d['nama_divisi'] ?></td>
                                     <?php if ($d['status'] == 0) :?>
                                     <td><button class="btn btn-danger">Belum ada pemenang</button></td>
                                     <?php elseif ($d['status'] == 1) :?>

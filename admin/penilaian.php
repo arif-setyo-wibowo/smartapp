@@ -98,10 +98,10 @@ if (isset($_GET['id_kategori']) && isset($_GET['id_project']) && isset($_GET['je
     $getProject = mysqli_query($koneksi, "SELECT * FROM project WHERE id_project = $id_project");
     $projectData = mysqli_fetch_assoc($getProject);
     if ($jenis == 'calonvendor') {
-        $data = mysqli_query($koneksi, "SELECT c.*, p.nama_project, k.nama_kategori FROM calonvendor c JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori WHERE c.id_project = $id_project");
+        $data = mysqli_query($koneksi, "SELECT c.*, p.nama_project, k.nama_kategori, d.nama_divisi FROM calonvendor c JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori JOIN divisi d ON p.id_divisi = d.id_divisi WHERE c.id_project = $id_project");
     } elseif ($jenis == 'pk_staff') {
         if ($projectData['status'] == 1) {
-            $data = mysqli_query($koneksi, "SELECT pk.*, c.nama_vendor, p.nama_project, k.nama_kategori FROM pk_staff pk JOIN calonvendor c ON pk.id_vendor = c.id_calonvendor JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori WHERE pk.id_project = $id_project");
+            $data = mysqli_query($koneksi, "SELECT pk.*, c.nama_vendor, p.nama_project, k.nama_kategori, d.nama_divisi FROM pk_staff pk JOIN calonvendor c ON pk.id_vendor = c.id_calonvendor JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori JOIN divisi d ON p.id_divisi = d.id_divisi WHERE pk.id_project = $id_project");
         }
         if ($projectData['status'] == 0) {
             $_SESSION['error'] = 'Project Belum Ditentukan Pemenangnya';
@@ -211,6 +211,7 @@ if (isset($_GET['id_kategori']) && isset($_GET['id_project']) && isset($_GET['je
                             <th>No</th>
                             <th>Kategori</th>
                             <th>Nama Project</th>
+                            <th>Divisi</th>
                             <th>Nama Vendor</th>
                             <th>Performance</th>
                             <th>Bobot (30%)</th>
@@ -228,6 +229,7 @@ if (isset($_GET['id_kategori']) && isset($_GET['id_project']) && isset($_GET['je
                             <td><?= $no++ ?></td>
                             <td><?= $d['nama_kategori'] ?></td>
                             <td><?= $d['nama_project'] ?></td>
+                            <td><?= $d['nama_divisi'] ?></td>
                             <td><?= $d['nama_vendor'] ?></td>
                             <td class="<?= empty($d['total_point']) ? 'empty' : '' ?>">
                                 <?= !empty($d['total_point']) ? $d['total_point'] : '-' ?>
@@ -254,6 +256,7 @@ if (isset($_GET['id_kategori']) && isset($_GET['id_project']) && isset($_GET['je
                             <th>Total Penilaian</th>
                             <th>Kategori</th>
                             <th>Judul Pekerjaan</th>
+                            <th>Divisi</th>
                             <th>Tanggal</th>
                             <th>Status</th>
                             <th hidden></th>
@@ -267,6 +270,7 @@ if (isset($_GET['id_kategori']) && isset($_GET['id_project']) && isset($_GET['je
                             <td><?= !empty($d['total_point']) ? $d['total_point'] : '-' ?></td>
                             <td><?= $d['nama_kategori'] ?></td>
                             <td><?= $d['nama_project'] ?></td>
+                            <td><?= $d['nama_divisi'] ?></td>
                             <td><?= date('d/m/Y', strtotime($d['tanggal'])) ?></td>
                             <?php if ($d['status_nilai'] == 0) : ?>
                             <td><button class="btn btn-primary">Belum

@@ -13,7 +13,7 @@ $title = 'Penilaian Calon Vendor';
 
 include '../koneksi.php';
 $no = 1;
-$data = mysqli_query($koneksi, 'SELECT c.*, p.nama_project, k.nama_kategori FROM calonvendor c JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori');
+$data = mysqli_query($koneksi, 'SELECT c.*, p.nama_project, k.nama_kategori, d.nama_divisi FROM calonvendor c JOIN project p ON c.id_project = p.id_project JOIN kategori k ON p.id_kategori = k.id_kategori JOIN divisi d ON p.id_divisi = d.id_divisi');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'];
@@ -121,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th>Total Penilaian</th>
                                 <th>Kategori</th>
                                 <th>Judul Pekerjaan</th>
+                                <th>Divisi</th>
                                 <th>Tanggal</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -134,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><?= $d['total_point'] ? $d['total_point'] : '-' ?></td>
                                 <td><?= $d['nama_kategori'] ?></td>
                                 <td><?= $d['nama_project'] ?></td>
+                                <td><?= $d['nama_divisi'] ?></td>
                                 <td><?= date('d/m/Y', strtotime($d['tanggal'])) ?></td>
                                 <?php if ($d['status_point'] == 0) :?>
                                     <td><a href="penilaian-calon-vendor-edit.php?id=<?= $d['id_calonvendor'] ?>"><button class="btn btn-primary">Belum

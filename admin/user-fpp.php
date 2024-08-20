@@ -39,8 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nama = $koneksi->real_escape_string($_POST['nama']);
         $id_divisi = intval($_POST['divisi']); // Fetch divisi from POST
         $username = $koneksi->real_escape_string($_POST['username']);
-        $password = $koneksi->real_escape_string($_POST['password']); // Ensure password is fetched
-        // Check if username already exists
+        $password = password_hash($koneksi->real_escape_string($_POST['password']), PASSWORD_DEFAULT);
         $stmt = $koneksi->prepare('SELECT COUNT(*) FROM fpp WHERE username = ?');
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -158,9 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php while ($d = mysqli_fetch_assoc($data)): ?>
+                            <?php $no=1;  while ($d = mysqli_fetch_assoc($data)): ?>
                             <tr>
-                                <td><?php echo $d['id_fpp']; ?></td>
+                                <td><?php echo $no++ ?></td>
                                 <td><?php echo $d['nama']; ?></td>
                                 <td><?php echo $d['username']; ?></td>
                                 <td><?php echo $d['nama_divisi']; ?></td> <!-- Display division name -->
